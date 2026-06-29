@@ -1,0 +1,184 @@
+<app-header-section title="Country Management">
+  <div class="glass-card stat-card">
+    <div class="stat-card-header">
+      <i class="fa-solid fa-diagram-project icon-primary"></i>
+      <span class="stat-badge stat-badge-neutral">+2.4%</span>
+    </div>
+    <div>
+      <p class="stat-label">Total Nodes</p>
+      <h3 class="stat-value">124</h3>
+    </div>
+  </div>
+  <div class="glass-card stat-card">
+    <div class="stat-card-header">
+      <i class="fa-solid fa-globe icon-primary"></i>
+      <span class="stat-badge stat-badge-neutral">Active</span>
+    </div>
+    <div>
+      <p class="stat-label">Active Regions</p>
+      <h3 class="stat-value">12</h3>
+    </div>
+  </div>
+  <div class="glass-card stat-card">
+    <div class="stat-card-header">
+      <i class="fa-solid fa-heart-pulse icon-primary"></i>
+      <span class="stat-badge stat-badge-neutral">Optimal</span>
+    </div>
+    <div>
+      <p class="stat-label">System Uptime</p>
+      <h3 class="stat-value">98%</h3>
+    </div>
+  </div>
+  <div class="glass-card stat-card">
+    <div class="stat-card-header">
+      <i class="fa-solid fa-gauge-high icon-primary"></i>
+      <span class="stat-badge stat-badge-neutral">Stable</span>
+    </div>
+    <div>
+      <p class="stat-label">Average Load</p>
+      <h3 class="stat-value">42%</h3>
+    </div>
+  </div>
+</app-header-section>
+
+<app-action-bar>
+  <ng-container leftActions>
+    <button
+      class="ghost-button btn btn-sm"
+      data-bs-toggle="modal"
+      data-bs-target="#countryModal"
+      (click)="countryForm.initCreateForm()">
+      <i class="fa-solid fa-plus"></i>Create
+    </button>
+    <button
+      class="ghost-button btn btn-sm"
+      data-bs-toggle="modal"
+      data-bs-target="#countryModal"
+      [disabled]="selectedIds().size !== 1"
+      (click)="countryForm.initUpdateForm(getSelectedCountry())">
+      <i class="fa-solid fa-pen"></i>Update
+    </button>
+    <button
+      class="ghost-button btn-error btn btn-sm"
+      (click)="handleDeleteSelected()"
+      [disabled]="selectedIds().size < 1">
+      <i class="fa-solid fa-trash"></i>Delete {{ displayCount() }}
+    </button>
+  </ng-container>
+
+  <ng-container rightActions>
+    <button
+      class="ghost-button text-on-surface btn btn-sm"
+      data-bs-toggle="modal"
+      data-bs-target="#importModal">
+      <i class="fa-solid fa-download"></i>Import
+    </button>
+    <button
+      class="ghost-button text-on-surface btn btn-sm"
+      data-bs-toggle="modal"
+      data-bs-target="#exportModal">
+      <i class="fa-solid fa-upload"></i>Export
+    </button>
+    <div class="action-divider d-none d-sm-block"></div>
+    <button
+      class="ghost-button btn btn-sm"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#filterCollapse"
+      aria-expanded="false"
+      aria-controls="filterCollapse">
+      <i class="fa-solid fa-filter"></i>Filter
+    </button>
+  </ng-container>
+</app-action-bar>
+
+<app-filter
+  id="filterCollapse"
+  [(isDeleted)]="searchIsDeleted"
+  (search)="handleSearch()"
+  (clear)="handleClearFilter()">
+  <div class="filter-group">
+    <label>Country code</label>
+    <input
+      class="ghost-input form-control"
+      placeholder="e.g. Cou000000"
+      type="text"
+      [ngModel]="searchCountryCode()"
+      (ngModelChange)="searchCountryCode.set($event)"
+      (keyup.enter)="handleSearch()" />
+  </div>
+
+  <div class="filter-group">
+    <label>Country name</label>
+    <input
+      class="ghost-input form-control"
+      placeholder="e.g. Vietnam"
+      type="text"
+      [ngModel]="searchCountryName()"
+      (ngModelChange)="searchCountryName.set($event)"
+      (keyup.enter)="handleSearch()" />
+  </div>
+</app-filter>
+
+<app-table
+  [pageIndex]="pageIndex()"
+  [pageSize]="pageSize()"
+  [totalRecord]="totalRecord()"
+  [recordRange]="recordRange()"
+  [pageCount]="pageCount()"
+  (pageSizeChange)="handlePageSizeChange($event)"
+  (pageIndexChange)="handlePageIndexChange($event)">
+  <ng-container table-header>
+    <tr>
+      <th class="td-checkbox">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          [checked]="isAllSelected()"
+          [disabled]="countries().length === 0"
+          (change)="handleToggleSelectAll($event)" />
+      </th>
+      <th class="text-center" style="width: 70px">STT</th>
+      @for (field of countryFields | keyvalue: returnZero; track field.key) {
+        @if (field.key !== 'id') {
+          <th>{{ field.value }}</th>
+        }
+      }
+    </tr>
+  </ng-container>
+
+  <ng-container table-body>
+    @for (country of countries(); track country.id; let idx = $index) {
+      <tr
+        [class.row-selected]="isSelected(country.id)"
+        (click)="handleToggleRowSelection(country.id)">
+        <td class="td-checkbox">
+          <input
+            class="form-check-input row-checkbox"
+            type="checkbox"
+            [checked]="isSelected(country.id)"
+            (change)="handleToggleSelect(country.id, $event)" />
+        </td>
+        <td class="td-cell text-center">{{ fromRecord() + idx }}</td>
+        <td class="td-cell td-cell-highlight">{{ country.countryCode }}</td>
+        <td class="td-cell td-cell-highlight">{{ country.countryName }}</td>
+        <td class="td-cell">{{ country.note }}</td>
+        <td class="td-cell">{{ country.createdAt | date: 'yyyy-MM-dd HH:mm' }}</td>
+        <td class="td-cell">{{ country.createdBy }}</td>
+        <td class="td-cell">{{ country.updatedAt | date: 'yyyy-MM-dd HH:mm' }}</td>
+        <td class="td-cell">{{ country.updatedBy }}</td>
+      </tr>
+    }
+  </ng-container>
+</app-table>
+
+<app-country-form #countryForm (saveSuccess)="loadData()"></app-country-form>
+
+<app-export
+  [exportFn]="exportFn"
+  fileName="countries"
+  [pageIndex]="pageIndex()"
+  [pageSize]="pageSize()"
+  [currentFilters]="buildFilter()"
+  [selectedIds]="selectedIds()"></app-export>
+<app-import [importFn]="importFn" (importSuccess)="loadData()"></app-import>

@@ -1,0 +1,20 @@
+[
+  {
+    "session_id": "61c1b94c-ef7a-4877-9098-9d8adb2396c9",
+    "timestamp": "2026-06-29T11:43:00+07:00",
+    "model_name": "Gemini 3.5 Flash (Medium)",
+    "input_tokens": 150000,
+    "output_tokens": 5000,
+    "total_tokens": 155000,
+    "estimated_cost_usd": 0.017
+  },
+  {
+    "session_id": "61c1b94c-ef7a-4877-9098-9d8adb2396c9",
+    "timestamp": "2026-06-29T11:52:00+07:00",
+    "model_name": "Gemini 3.5 Flash (Medium)",
+    "input_tokens": 40000,
+    "output_tokens": 800,
+    "total_tokens": 40800,
+    "estimated_cost_usd": 0.0045
+  }
+]

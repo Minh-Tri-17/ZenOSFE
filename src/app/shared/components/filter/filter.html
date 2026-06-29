@@ -1,0 +1,28 @@
+<div class="glass-card filter-card">
+  <ng-content></ng-content>
+
+  <div class="filter-group d-flex flex-column align-items-start">
+    <div class="d-flex align-items-center" style="height: 38px">
+      <input
+        id="filterIsDeleted"
+        class="form-check-input me-2"
+        type="checkbox"
+        [checked]="isDeleted()"
+        (change)="handleIsDeleted($event)" />
+      <label
+        class="text-on-surface-variant form-check-label fw-semibold filter-check-label"
+        for="filterIsDeleted"
+        >Deleted</label
+      >
+    </div>
+  </div>
+
+  <div class="flex-shrink-0 d-flex gap-2">
+    <button class="ghost-button btn btn-sm" (click)="handleSearch()">
+      <i class="fa-solid fa-magnifying-glass"></i>Search
+    </button>
+    <button class="ghost-button text-on-surface-variant btn btn-sm" (click)="handleClearFilter()">
+      <i class="fa-solid fa-xmark"></i>Clear
+    </button>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="glass-card d-flex flex-column overflow-hidden mb-4">
+  <div class="table-responsive">
+    <table class="data-table">
+      <thead>
+        <ng-content select="[table-header]"></ng-content>
+      </thead>
+
+      <tbody>
+        <ng-content select="[table-body]"></ng-content>
+      </tbody>
+    </table>
+  </div>
+
+  <app-pagination
+    [pageIndex]="pageIndex()"
+    [pageSize]="pageSize()"
+    [totalRecord]="totalRecord()"
+    [recordRange]="recordRange()"
+    [pageCount]="pageCount()"
+    (pageSizeChange)="pageSizeChange.emit($event)"
+    (pageIndexChange)="pageIndexChange.emit($event)"
+  ></app-pagination>
+</div>

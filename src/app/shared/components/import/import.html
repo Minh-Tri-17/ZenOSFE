@@ -1,0 +1,113 @@
+<app-modal modalId="importModal">
+  <ng-container modal-title> Import Data </ng-container>
+
+  <ng-container modal-content>
+    <div
+      class="import-upload-zone mb-3"
+      [class.drag-over]="isDragOver()"
+      [class.has-file]="selectedFile() !== null"
+      [class.disabled]="isImporting()"
+      (click)="handleTriggerFileInput()"
+      (dragover)="handleDragOver($event)"
+      (dragleave)="handleDragLeave($event)"
+      (drop)="handleDrop($event)">
+      @if (selectedFile() == null) {
+        <i class="fa-solid fa-cloud-arrow-up fs-3 text-secondary mb-2"></i>
+        <p class="text-on-surface fw-semibold small mb-1">Click to upload or drag and drop</p>
+        <p class="upload-hint-text text-on-surface-variant xsmall mb-2">
+          Accepted: {{ acceptTypes() }} — Max {{ maxSizeMB() }}MB
+        </p>
+      } @else {
+        <div class="selected-file-badge">
+          <i class="fa-solid fa-file-code me-1 text-primary"></i>
+          <span class="selected-file-name fw-semibold text-primary">
+            {{ selectedFile()!.name }}</span
+          >
+          <span class="text-on-surface-variant ms-1" style="font-size: 11px">
+            ({{ formatFileSize(selectedFile()!.size) }})
+          </span>
+          <button
+            type="button"
+            class="btn-remove-file btn-close ms-2"
+            aria-label="Remove file"
+            (click)="handleRemoveFile($event)"
+            [disabled]="isImporting()"></button>
+        </div>
+      }
+    </div>
+
+    <input
+      type="file"
+      #fileInput
+      style="display: none"
+      [accept]="acceptTypes()"
+      (change)="handleFileSelect($event)" />
+
+    @if (errorMessage()) {
+      <div class="alert alert-danger py-2 px-3 mb-3" style="font-size: 13px; border-radius: 8px">
+        <i class="fa-solid fa-circle-exclamation me-1"></i>
+        {{ errorMessage() }}
+      </div>
+    }
+
+    @if (showProgress()) {
+      <div class="my-3 px-1">
+        <div class="d-flex justify-content-between align-items-center mb-1">
+          <span class="text-on-surface-variant small fw-semibold">
+            {{ progressStatus() }}
+          </span>
+          <span class="progress-percent-badge badge">{{ progress() }}%</span>
+        </div>
+        <div class="load-bar" style="width: 100%">
+          <div
+            class="load-fill load-fill-success"
+            [style.width.%]="progress()"
+            [style.transition]="'width 0.4s ease'"></div>
+        </div>
+      </div>
+    }
+  </ng-container>
+
+  <ng-container modal-actions>
+    <button
+      type="button"
+      class="ghost-button btn btn-sm"
+      data-bs-dismiss="modal"
+      [disabled]="isImporting()">
+      <i class="fa-solid fa-xmark me-1"></i>Cancel
+    </button>
+    <button
+      type="button"
+      class="button"
+      (click)="handleConfirmImport()"
+      [disabled]="isImporting() || selectedFile() === null">
+      <span class="fold"></span>
+      <div class="points-wrapper">
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+      </div>
+      <span class="inner">
+        <i class="fa-solid fa-upload"></i>
+        @if (isImporting()) {
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Importing...
+        } @else {
+          Import
+        }
+      </span>
+    </button>
+  </ng-container>
+</app-modal>

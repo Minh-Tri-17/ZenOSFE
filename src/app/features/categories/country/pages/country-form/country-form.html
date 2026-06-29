@@ -1,0 +1,77 @@
+<app-modal modalId="countryModal">
+  <ng-container modal-title>
+    {{ title() }}
+  </ng-container>
+
+  <ng-container modal-content>
+    <form [formGroup]="countryForm">
+      <div class="mb-3">
+        <label for="countryCodeInput" class="text-on-surface-variant form-label small fw-semibold"
+          >Country code</label
+        >
+        <input
+          type="text"
+          class="ghost-input form-control"
+          id="countryCodeInput"
+          formControlName="countryCode"
+          placeholder="e.g. Cou000000" />
+      </div>
+
+      <div class="mb-3">
+        <label for="countryNameInput" class="text-on-surface-variant form-label small fw-semibold"
+          >Country Name</label
+        >
+        <input
+          type="text"
+          class="ghost-input form-control"
+          id="countryNameInput"
+          formControlName="countryName"
+          placeholder="e.g. Vietnam" />
+      </div>
+
+      <div class="mb-3">
+        <label for="countryNoteInput" class="text-on-surface-variant form-label small fw-semibold"
+          >Note</label
+        >
+        <textarea
+          class="ghost-input form-control"
+          id="countryNoteInput"
+          formControlName="note"
+          rows="3"
+          placeholder="e.g. Primary database replica"></textarea>
+      </div>
+    </form>
+  </ng-container>
+
+  <ng-container modal-actions>
+    <button type="button" class="ghost-button btn btn-sm" data-bs-dismiss="modal">
+      <i class="fa-solid fa-xmark me-1"></i>Cancel
+    </button>
+    <button
+      type="submit"
+      class="button"
+      data-bs-dismiss="modal"
+      [disabled]="!countryForm.valid"
+      (click)="handleSave()">
+      <span class="fold"></span>
+      <div class="points-wrapper">
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+      </div>
+      <span class="inner"><i class="fa-solid fa-floppy-disk"></i>Save change</span>
+    </button>
+  </ng-container>
+</app-modal>

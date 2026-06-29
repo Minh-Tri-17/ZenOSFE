@@ -1,0 +1,133 @@
+<app-mobile-header></app-mobile-header>
+
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<div class="d-flex">
+  <app-sidebar></app-sidebar>
+
+  <div class="main-content">
+    <app-header></app-header>
+
+    <main class="content-area">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>
+
+<app-modal modalId="aboutModal">
+  <ng-container modal-title>Abong ZenOS</ng-container>
+
+  <ng-container modal-content>
+    <div class="text-center">
+      <img src="images/logo.png" alt="ZenOS Logo" class="about-modal-logo mb-3" />
+      <h4 class="about-modal-title text-primary-color fw-bold mb-1">ZenOS Enterprise</h4>
+      <p class="about-modal-version text-on-surface-variant small mb-3">Version 2.4.0 (Stable)</p>
+      <div class="about-modal-box p-3 rounded-3 mb-3">
+        <p class="about-modal-desc text-on-surface-variant mb-0">
+          ZenOS is a high-performance, real-time enterprise management console designed for scalable
+          server infrastructure, global region synchronization, and executive operations oversight.
+        </p>
+      </div>
+      <p class="about-modal-copy text-on-surface-variant small mb-0">
+        &copy; 2026 ZenOS Corporation. All rights reserved.
+      </p>
+    </div>
+  </ng-container>
+</app-modal>
+
+<app-modal modalId="notificationsModal">
+  <ng-container modal-title>All Notifing-ions</ng-container>
+
+  <ng-container modal-content>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <div class="d-flex gap-2">
+        <button class="btn btn-sm btn-primary px-3 rounded-pill" type="button" id="modalFilterAll">
+          All
+        </button>
+        <button
+          class="ghost-button text-on-surface-variant btn btn-sm px-3 rounded-pill"
+          type="button"
+          id="modalFilterUnread">
+          Unread
+        </button>
+      </div>
+      <button
+        class="ghost-button btn btn-sm text-secondary fw-semibold"
+        type="button"
+        id="modalMarkAllRead">
+        <i class="fa-solid fa-check-double me-1"></i>Mark all as read
+      </button>
+    </div>
+
+    <div class="modal-notification-list d-flex flex-column gap-2">
+      <div class="notification-item unread d-flex align-items-start gap-3 p-3 rounded-3">
+        <div class="notification-item-icon icon-primary-soft">
+          <i class="fa-solid fa-server"></i>
+        </div>
+        <div class="flex-grow-1">
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="text-primary-color fw-bold fs-6">Server cluster synced</span>
+            <time class="text-muted small">2m ago</time>
+          </div>
+          <p class="modal-notification-text text-on-surface-variant mb-0 mt-1 text-sm">
+            12 nodes completed backup successfully. All systems operational.
+          </p>
+        </div>
+      </div>
+
+      <div class="notification-item unread d-flex align-items-start gap-3 p-3 rounded-3">
+        <div class="notification-item-icon icon-secondary-soft">
+          <i class="fa-solid fa-user-plus"></i>
+        </div>
+        <div class="flex-grow-1">
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="text-primary-color fw-bold fs-6">New executive account</span>
+            <time class="text-muted small">18m ago</time>
+          </div>
+          <p class="modal-notification-text text-on-surface-variant mb-0 mt-1 text-sm">
+            Regional manager access is pending approval. Security clearance verified.
+          </p>
+        </div>
+      </div>
+
+      <div class="notification-item unread d-flex align-items-start gap-3 p-3 rounded-3">
+        <div class="notification-item-icon icon-error-soft">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+        <div class="flex-grow-1">
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="text-primary-color fw-bold fs-6">POS latency warning</span>
+            <time class="text-muted small">1h ago</time>
+          </div>
+          <p class="modal-notification-text text-on-surface-variant mb-0 mt-1 text-sm">
+            Store SG-04 exceeded the response threshold. Investigating regional ISP.
+          </p>
+        </div>
+      </div>
+
+      <div class="notification-item d-flex align-items-start gap-3 p-3 rounded-3">
+        <div class="notification-item-icon icon-muted-soft">
+          <i class="fa-solid fa-file-waveform"></i>
+        </div>
+        <div class="flex-grow-1">
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="text-primary-color fw-bold fs-6">Payroll report exported</span>
+            <time class="text-muted small">3h ago</time>
+          </div>
+          <p class="modal-notification-text text-on-surface-variant mb-0 mt-1 text-sm">
+            April payroll statement is ready for review. Secure download token generated.
+          </p>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container modal-actions>
+    <button
+      type="button"
+      class="glass-modal-btn-primary btn btn-sm btn-primary"
+      data-bs-dismiss="modal">
+      <i class="fa-solid fa-xmark me-1"></i>Close
+    </button>
+  </ng-container>
+</app-modal>

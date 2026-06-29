@@ -1,0 +1,18 @@
+<div class="modal fade" tabindex="-1" aria-hidden="true" [id]="modalId()">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="glass-card glass-modal-content modal-content">
+      <div class="modal-header">
+        <h5 class="text-primary-color glass-modal-title modal-title fw-bold">
+          <ng-content select="[modal-title]"></ng-content>
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body py-3">
+        <ng-content select="[modal-content]"></ng-content>
+      </div>
+      <div class="modal-footer justify-content-end gap-2">
+        <ng-content select="[modal-actions]"></ng-content>
+      </div>
+    </div>
+  </div>
+</div>

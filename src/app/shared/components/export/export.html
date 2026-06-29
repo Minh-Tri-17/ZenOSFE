@@ -1,0 +1,113 @@
+<app-modal modalId="exportModal">
+  <ng-container modal-title> Export Data </ng-container>
+
+  <ng-container modal-content>
+    <div class="export-radio-group mb-3">
+      <div class="export-radio-item" [class.disabled]="isExporting()">
+        <input
+          type="radio"
+          id="exportAllPage"
+          name="exportOption"
+          value="all"
+          [checked]="exportOption() === 'all'"
+          (change)="handleOptionChange('all')"
+          [disabled]="isExporting()" />
+        <label for="exportAllPage">All page</label>
+      </div>
+      <div class="export-radio-item" [class.disabled]="isExporting()">
+        <input
+          type="radio"
+          id="exportCurrentPage"
+          name="exportOption"
+          value="current"
+          [checked]="exportOption() === 'current'"
+          (change)="handleOptionChange('current')"
+          [disabled]="isExporting()" />
+        <label for="exportCurrentPage">Current page</label>
+      </div>
+      <div class="export-radio-item" [class.disabled]="isExporting() || !canExportSelectItems()">
+        <input
+          type="radio"
+          id="exportSelectItems"
+          name="exportOption"
+          value="select"
+          [checked]="exportOption() === 'select'"
+          (change)="handleOptionChange('select')"
+          [disabled]="isExporting() || !canExportSelectItems()" />
+        <label for="exportSelectItems" class="d-flex flex-column align-items-start">
+          <span class="export-select-title">Select Items</span>
+          @if (!canExportSelectItems()) {
+            <span class="export-select-badge">No items selected</span>
+          } @else {
+            <span class="badge export-select-badge">
+              {{ selectedIds().size }} selected
+            </span>
+          }
+        </label>
+      </div>
+    </div>
+
+    @if (showProgress()) {
+      <div class="my-3 px-1">
+        <div class="d-flex justify-content-between align-items-center mb-1">
+          <span class="text-on-surface-variant small fw-semibold">
+            {{ progressStatus() }}
+          </span>
+          <span class="progress-percent-badge badge">{{ progress() }}%</span>
+        </div>
+        <div class="load-bar" style="width: 100%">
+          <div
+            class="load-fill load-fill-success"
+            [style.width.%]="progress()"
+            [style.transition]="'width 0.4s ease'"></div>
+        </div>
+      </div>
+    }
+  </ng-container>
+
+  <ng-container modal-actions>
+    <button
+      type="button"
+      class="ghost-button btn btn-sm"
+      data-bs-dismiss="modal"
+      [disabled]="isExporting()">
+      <i class="fa-solid fa-xmark me-1"></i>Cancel
+    </button>
+    <button
+      type="button"
+      class="button"
+      (click)="handleConfirmExport()"
+      [disabled]="isExporting() || (exportOption() === 'select' && !canExportSelectItems)">
+      <span class="fold"></span>
+      <div class="points-wrapper">
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+      </div>
+      <span class="inner"
+        ><i class="fa-solid fa-download"></i>
+        @if (isExporting()) {
+          <span
+            class="spinner-border spinner-border-sm me-1"
+            role="status"
+            aria-hidden="true"></span>
+          Exporting...
+        } @else {
+          Export
+        }
+      </span>
+    </button>
+  </ng-container>
+</app-modal>

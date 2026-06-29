@@ -1,0 +1,48 @@
+<div class="table-footer">
+  <div class="page-info">
+    <span>Items per page:</span>
+    <div class="page-select-wrapper">
+      <select
+        class="ghost-input page-select form-select"
+        [value]="pageSize()"
+        (change)="handlePageSizeChange($event)"
+      >
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="50">50</option>
+        <option value="100">100</option>
+        <option value="200">200</option>
+        <option value="500">500</option>
+      </select>
+      <i class="fa-solid fa-chevron-down"></i>
+    </div>
+    <span class="ms-2">{{ recordRange() }} of {{ totalRecord() }}</span>
+  </div>
+  <div class="pagination-controls">
+    <button
+      class="ghost-button page-btn btn btn-sm"
+      [disabled]="pageIndex() <= 1"
+      (click)="handlePageIndexChange(pageIndex() - 1)"
+    >
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+    <div class="d-flex align-items-center gap-1">
+      @for (page of pages(); track page) {
+        <button
+          class="ghost-button page-btn text-on-surface-variant btn btn-sm"
+          [class]="page === pageIndex() ? 'page-btn-active' : ''"
+          (click)="handlePageIndexChange(page)"
+        >
+          {{ page }}
+        </button>
+      }
+    </div>
+    <button
+      class="ghost-button page-btn page-btn-nav btn btn-sm"
+      [disabled]="pageIndex() >= pageCount()"
+      (click)="handlePageIndexChange(pageIndex() + 1)"
+    >
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+  </div>
+</div>

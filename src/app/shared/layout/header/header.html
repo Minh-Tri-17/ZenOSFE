@@ -1,0 +1,164 @@
+<header class="topbar d-none d-md-flex">
+  <div class="topbar-search-wrapper">
+    <div class="topbar-search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input class="ghost-input form-control" placeholder="Search systems..." type="text" />
+    </div>
+  </div>
+  <div class="topbar-actions">
+    <div class="notification-dropdown-wrapper dropdown">
+      <button
+        class="topbar-btn topbar-btn-bell"
+        type="button"
+        id="notificationToggleBtn"
+        data-bs-toggle="dropdown"
+        aria-expanded="false">
+        <i class="fa-solid fa-bell"></i>
+        <span class="notification-badge">99+</span>
+      </button>
+      <div class="notification-dropdown dropdown-menu dropdown-menu-end" id="notificationDropdown">
+        <div class="notification-dropdown-header">
+          <div>
+            <h6>Notifications</h6>
+            <p>3 unread updates</p>
+          </div>
+          <a class="notification-mark-all" href="#">Mark all as read</a>
+        </div>
+        <div class="notification-list">
+          <a class="notification-item unread" href="#">
+            <div class="notification-item-icon icon-primary-soft">
+              <i class="fa-solid fa-server"></i>
+            </div>
+            <div class="notification-item-content">
+              <div class="notification-item-top">
+                <span>Server cluster synced</span>
+                <time>2m</time>
+              </div>
+              <p>12 nodes completed backup successfully.</p>
+            </div>
+          </a>
+          <a class="notification-item unread" href="#">
+            <div class="notification-item-icon icon-secondary-soft">
+              <i class="fa-solid fa-user-plus"></i>
+            </div>
+            <div class="notification-item-content">
+              <div class="notification-item-top">
+                <span>New executive account</span>
+                <time>18m</time>
+              </div>
+              <p>Regional manager access is pending approval.</p>
+            </div>
+          </a>
+          <a class="notification-item unread" href="#">
+            <div class="notification-item-icon icon-error-soft">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <div class="notification-item-content">
+              <div class="notification-item-top">
+                <span>POS latency warning</span>
+                <time>1h</time>
+              </div>
+              <p>Store SG-04 exceeded the response threshold.</p>
+            </div>
+          </a>
+          <a class="notification-item" href="#">
+            <div class="notification-item-icon icon-muted-soft">
+              <i class="fa-solid fa-file-waveform"></i>
+            </div>
+            <div class="notification-item-content">
+              <div class="notification-item-top">
+                <span>Payroll report exported</span>
+                <time>3h</time>
+              </div>
+              <p>April payroll statement is ready for review.</p>
+            </div>
+          </a>
+        </div>
+        <div class="dropdown-divider"></div>
+        <a
+          class="notification-footer-link"
+          href="#"
+          data-bs-toggle="modal"
+          data-bs-target="#notificationsModal"
+          >View all notifications</a
+        >
+      </div>
+    </div>
+    <div class="lang-dropdown-wrapper dropdown">
+      <button
+        class="topbar-btn"
+        type="button"
+        id="langToggleBtn"
+        data-bs-toggle="dropdown"
+        aria-expanded="false">
+        <i class="fa-solid fa-language"></i>
+      </button>
+      <div class="lang-dropdown dropdown-menu dropdown-menu-end" id="langDropdown">
+        <a class="lang-item dropdown-item" href="#" data-lang="cn">
+          <img src="images/cn.png" alt="China" />
+          <span>中文 (Chinese)</span>
+        </a>
+        <a class="lang-item dropdown-item" href="#" data-lang="jp">
+          <img src="images/jp.png" alt="Japan" />
+          <span>日本語 (Japanese)</span>
+        </a>
+        <a class="lang-item dropdown-item" href="#" data-lang="kr">
+          <img src="images/kr.png" alt="Korea" />
+          <span>한국어 (Korean)</span>
+        </a>
+        <a class="lang-item dropdown-item" href="#" data-lang="us">
+          <img src="images/us.png" alt="United States" />
+          <span>English (US)</span>
+        </a>
+        <a class="lang-item lang-item-active dropdown-item" href="#" data-lang="vn">
+          <img src="images/vn.png" alt="Vietnam" />
+          <span>Tiếng Việt</span>
+        </a>
+      </div>
+    </div>
+    <button class="topbar-btn topbar-btn-sun" (click)="onToggleTheme()">
+      <i class="fa-solid" [class]="themeService.isDark() ? 'fa-sun' : 'fa-moon'"></i>
+    </button>
+    <button
+      class="topbar-btn"
+      type="button"
+      data-bs-toggle="modal"
+      data-bs-target="#aboutModal"
+      aria-label="About ZenOS">
+      <i class="fa-regular fa-circle-question"></i>
+    </button>
+    <div class="avatar-wrapper dropdown">
+      <button
+        class="topbar-btn topbar-btn-avatar"
+        type="button"
+        id="avatarToggleBtn"
+        data-bs-toggle="dropdown"
+        aria-expanded="false">
+        <img alt="Executive User" src="images/avatar.jpg" />
+      </button>
+      <div class="avatar-dropdown dropdown-menu dropdown-menu-end" id="avatarDropdown">
+        <div class="avatar-dropdown-header">
+          <img src="images/avatar.jpg" alt="User Avatar" />
+          <div>
+            <h6>Executive User</h6>
+            <p>executive@zenos.com</p>
+          </div>
+        </div>
+        <div class="dropdown-divider"></div>
+        <a class="avatar-dropdown-item dropdown-item" href="#">
+          <i class="fa-solid fa-user"></i>
+          <span>My Profile</span>
+        </a>
+        <a class="avatar-dropdown-item dropdown-item" href="#">
+          <i class="fa-solid fa-user-gear"></i>
+          <span>Account Settings</span>
+        </a>
+        <div class="dropdown-divider"></div>
+        <a class="avatar-dropdown-item logout dropdown-item" href="login.html">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span>Logout</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
