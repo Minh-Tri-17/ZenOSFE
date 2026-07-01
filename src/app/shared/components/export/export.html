@@ -39,9 +39,7 @@
           @if (!canExportSelectItems()) {
             <span class="export-select-badge">No items selected</span>
           } @else {
-            <span class="badge export-select-badge">
-              {{ selectedIds().size }} selected
-            </span>
+            <span class="badge export-select-badge"> {{ selectedIds().size }} selected </span>
           }
         </label>
       </div>
@@ -75,9 +73,9 @@
     </button>
     <button
       type="button"
-      class="button"
+      class="button btn"
       (click)="handleConfirmExport()"
-      [disabled]="isExporting() || (exportOption() === 'select' && !canExportSelectItems)">
+      [disabled]="isExporting()">
       <span class="fold"></span>
       <div class="points-wrapper">
         <i class="point"></i>
