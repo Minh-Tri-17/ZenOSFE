@@ -189,15 +189,14 @@ export class CountryList {
     const idsArray = Array.from(this.selectedIds());
     if (idsArray.length === 0) return;
 
-    if (this.searchIsDeleted()) {
+    if (this.searchIsDeleted())
       this.facade.hardDelete(idsArray.join(',')).then(() => {
         this.loadData();
       });
-    } else {
+    else
       this.facade.softDelete(idsArray.join(',')).then(() => {
         this.loadData();
       });
-    }
   }
 
   isAllSelected(): boolean {

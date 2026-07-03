@@ -44,6 +44,7 @@
 <app-action-bar>
   <ng-container leftActions>
     <button
+      type="button"
       class="ghost-button btn btn-sm"
       data-bs-toggle="modal"
       data-bs-target="#countryModal"
@@ -51,6 +52,7 @@
       <i class="fa-solid fa-plus"></i>Create
     </button>
     <button
+      type="button"
       class="ghost-button btn btn-sm"
       data-bs-toggle="modal"
       data-bs-target="#countryModal"
@@ -59,6 +61,7 @@
       <i class="fa-solid fa-pen"></i>Update
     </button>
     <button
+      type="button"
       class="ghost-button btn-error btn btn-sm"
       (click)="handleDeleteSelected()"
       [disabled]="selectedIds().size < 1">
@@ -68,12 +71,14 @@
 
   <ng-container rightActions>
     <button
+      type="button"
       class="ghost-button text-on-surface btn btn-sm"
       data-bs-toggle="modal"
       data-bs-target="#importModal">
       <i class="fa-solid fa-download"></i>Import
     </button>
     <button
+      type="button"
       class="ghost-button text-on-surface btn btn-sm"
       data-bs-toggle="modal"
       data-bs-target="#exportModal">
@@ -81,8 +86,8 @@
     </button>
     <div class="action-divider d-none d-sm-block"></div>
     <button
-      class="ghost-button btn btn-sm"
       type="button"
+      class="ghost-button btn btn-sm"
       data-bs-toggle="collapse"
       data-bs-target="#filterCollapse"
       aria-expanded="false"
@@ -157,7 +162,7 @@
             class="form-check-input row-checkbox"
             type="checkbox"
             [checked]="isSelected(country.id)"
-            (change)="handleToggleSelect(country.id, $event)" />
+            (click)="handleToggleSelect(country.id, $event)" />
         </td>
         <td class="td-cell text-center">{{ fromRecord() + idx }}</td>
         <td class="td-cell td-cell-highlight">{{ country.countryCode }}</td>

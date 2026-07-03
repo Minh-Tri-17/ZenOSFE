@@ -25,3 +25,26 @@
 [11:51:49Z] [INFO] Agent started processing request: "Báo cáo lại kết quả test"
 [11:51:55Z] [DECISION] Agent decides to create a structured markdown artifact to report all test results, code fixes, and manual UI findings.
 [11:52:00Z] [INFO] Agent finished processing request successfully.
+
+=== 2026-07-01 ===
+[08:28:02Z] [INFO] Agent started processing request: "hiện tại disabled thì vẫn click vào được nút nhưng nó chỉ không thực thi hàm thôi. Tôi muốn khi disabled thì ko click được vào nút và nút bị mờ đi và không thực thi hàm"
+[08:28:04Z] [DECISION] Agent decides to modify styles.scss to add support for the custom button's disabled state.
+[08:28:45Z] [RESULT] Project built successfully with modified button styles.
+[08:28:48Z] [INFO] Agent finished processing button disabled styling request.
+[08:53:58Z] [INFO] Agent started processing request: "sử dụng skill skill-coordinator để điều phối skill. Tạo 1 login component ở features/auth."
+[08:54:01Z] [DECISION] Agent decides to scan the workspace and read skill instructions.
+[08:54:12Z] [RESULT] Workspace scanned: Checked for duplicate login references, none found.
+[08:54:14Z] [DECISION] Agent decides to generate standard login component skeleton via Angular CLI.
+[08:54:20Z] [RESULT] Skeletal login component files generated successfully under features/auth/pages/login.
+[08:54:33Z] [DECISION] Agent decides to update dynamic route mapping in app.routes.ts to load the new Login component.
+[08:54:40Z] [RESULT] Project built successfully. Login component is loaded lazily.
+[08:54:45Z] [INFO] Agent finished processing request successfully.
+[09:16:03Z] [INFO] Agent started processing request: "kiểm tra trong project hàm nào cần thêm preventDefault và stopPropagation"
+[09:16:07Z] [DECISION] Agent decides to scan HTML templates for event bindings.
+[09:16:25Z] [DECISION] Agent decides to scan TypeScript files for event parameters and usages of preventDefault/stopPropagation.
+[09:16:30Z] [RESULT] Identified double-toggle bug in country-list.html row checkboxes, reload issues on form submissions, and hash links in login.html.
+[09:18:40Z] [DECISION] Agent decides to add (submit)="$event.preventDefault()" to forms in country-form.html and login.html.
+[09:18:49Z] [DECISION] Agent decides to add (click)="$event.preventDefault()" to mock anchor links in login.html.
+[09:18:53Z] [DECISION] Agent decides to change row checkbox bindings in country-list.html from (change) to (click) to leverage internal stopPropagation().
+[09:19:00Z] [RESULT] Project built successfully.
+[09:19:05Z] [INFO] Agent finished processing request successfully.

@@ -1,5 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ThemeService } from '../../../core/services/theme.service';
+import { Router } from '@angular/router';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -9,8 +11,14 @@ import { ThemeService } from '../../../core/services/theme.service';
 })
 export class Header {
   protected themeService = inject(ThemeService);
+  protected authService = inject(AuthService);
+  private router = inject(Router);
 
-  onToggleTheme() {
+  handleToggleTheme() {
     this.themeService.toggleTheme();
+  }
+
+  handleLogout() {
+    this.authService.logout();
   }
 }

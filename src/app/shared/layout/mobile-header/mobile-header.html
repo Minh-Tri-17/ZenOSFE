@@ -1,5 +1,5 @@
 <header class="mobile-header">
-  <button class="mobile-menu-toggle" id="mobileMenuToggleBtn" aria-label="Open navigation menu">
+  <button type="button" class="mobile-menu-toggle" id="mobileMenuToggleBtn">
     <i class="fa-solid fa-bars"></i>
   </button>
 
@@ -11,19 +11,17 @@
   <div class="mobile-actions">
     <div class="notification-dropdown-wrapper dropdown">
       <button
-        class="topbar-btn topbar-btn-bell"
         type="button"
+        class="topbar-btn topbar-btn-bell"
         id="mobileNotificationToggleBtn"
         data-bs-toggle="dropdown"
-        aria-expanded="false"
-      >
+        aria-expanded="false">
         <i class="fa-solid fa-bell"></i>
         <span class="notification-badge">99+</span>
       </button>
       <div
         class="notification-dropdown dropdown-menu dropdown-menu-end"
-        id="mobileNotificationDropdown"
-      >
+        id="mobileNotificationDropdown">
         <div class="notification-dropdown-header">
           <div>
             <h6>Notifications</h6>
@@ -94,13 +92,11 @@
 
     <div class="options-dropdown-wrapper dropdown">
       <button
-        class="topbar-btn"
         type="button"
+        class="topbar-btn"
         id="mobileOptionsToggleBtn"
         data-bs-toggle="dropdown"
-        aria-expanded="false"
-        aria-label="Toggle options menu"
-      >
+        aria-expanded="false">
         <i class="fa-solid fa-ellipsis-vertical"></i>
       </button>
       <div class="options-dropdown dropdown-menu dropdown-menu-end" id="mobileOptionsDropdown">
@@ -110,21 +106,18 @@
         </div>
 
         <button
-          class="mobile-btn-sun dropdown-item d-flex align-items-center gap-3 py-2 px-3"
           type="button"
-          aria-label="Toggle theme"
-        >
-          <i class="fa-solid fa-moon fs-5"></i>
+          class="mobile-btn-sun dropdown-item d-flex align-items-center gap-3 py-2 px-3"
+          (click)="handleToggleTheme()">
+          <i class="fa-solid" [class]="themeService.isDark() ? 'fa-sun' : 'fa-moon'"></i>
           <span>Theme Mode</span>
         </button>
 
         <button
-          class="dropdown-item d-flex align-items-center gap-3 py-2 px-3"
           type="button"
+          class="dropdown-item d-flex align-items-center gap-3 py-2 px-3"
           data-bs-toggle="modal"
-          data-bs-target="#aboutModal"
-          aria-label="About ZenOS"
-        >
+          data-bs-target="#aboutModal">
           <i class="fa-regular fa-circle-question fs-5"></i>
           <span>About</span>
         </button>
@@ -140,40 +133,35 @@
           <a
             class="lang-item dropdown-item d-flex align-items-center gap-3 py-2 px-3 rounded"
             href="#"
-            data-lang="cn"
-          >
+            data-lang="cn">
             <img src="images/cn.png" alt="China" class="mobile-lang-flag" />
             <span>中文 (Chinese)</span>
           </a>
           <a
             class="lang-item dropdown-item d-flex align-items-center gap-3 py-2 px-3 rounded"
             href="#"
-            data-lang="jp"
-          >
+            data-lang="jp">
             <img src="images/jp.png" alt="Japan" class="mobile-lang-flag" />
             <span>日本語 (Japanese)</span>
           </a>
           <a
             class="lang-item dropdown-item d-flex align-items-center gap-3 py-2 px-3 rounded"
             href="#"
-            data-lang="kr"
-          >
+            data-lang="kr">
             <img src="images/kr.png" alt="Korea" class="mobile-lang-flag" />
             <span>한국어 (Korean)</span>
           </a>
           <a
             class="lang-item dropdown-item d-flex align-items-center gap-3 py-2 px-3 rounded"
             href="#"
-            data-lang="us"
-          >
+            data-lang="us">
             <img src="images/us.png" alt="United States" class="mobile-lang-flag" />
             <span>English (US)</span>
           </a>
           <a
             class="lang-item lang-item-active dropdown-item d-flex align-items-center gap-3 py-2 px-3 rounded"
             href="#"
-            data-lang="vn"
-          >
+            data-lang="vn">
             <img src="images/vn.png" alt="Vietnam" class="mobile-lang-flag" />
             <span>Tiếng Việt</span>
           </a>
@@ -183,12 +171,11 @@
 
     <div class="avatar-wrapper dropdown">
       <button
-        class="topbar-btn topbar-btn-avatar"
         type="button"
+        class="topbar-btn topbar-btn-avatar"
         id="mobileAvatarToggleBtn"
         data-bs-toggle="dropdown"
-        aria-expanded="false"
-      >
+        aria-expanded="false">
         <img alt="Executive User" src="images/avatar.jpg" />
       </button>
       <div class="avatar-dropdown dropdown-menu dropdown-menu-end" id="mobileAvatarDropdown">
@@ -209,7 +196,7 @@
           <span>Account Settings</span>
         </a>
         <div class="dropdown-divider"></div>
-        <a class="avatar-dropdown-item logout dropdown-item" href="login.html">
+        <a class="avatar-dropdown-item logout dropdown-item" (click)="handleLogout()">
           <i class="fa-solid fa-right-from-bracket"></i>
           <span>Logout</span>
         </a>

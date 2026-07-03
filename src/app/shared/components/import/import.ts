@@ -117,18 +117,15 @@ export class Import {
   handleFileSelect(event: Event) {
     const input = event.target as HTMLInputElement;
     const file = input.files?.[0];
-    if (file) {
-      this.handleFile(file);
-    }
+
+    if (file) this.handleFile(file);
   }
 
   handleDragOver(event: DragEvent) {
     event.preventDefault();
     event.stopPropagation();
 
-    if (!this.isImporting()) {
-      this.isDragOver.set(true);
-    }
+    if (!this.isImporting()) this.isDragOver.set(true);
   }
 
   handleDragLeave(event: DragEvent) {

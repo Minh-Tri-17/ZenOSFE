@@ -4,7 +4,7 @@
   </ng-container>
 
   <ng-container modal-content>
-    <form [formGroup]="countryForm">
+    <form [formGroup]="countryForm" (submit)="$event.preventDefault()">
       <div class="mb-3">
         <label for="countryCodeInput" class="text-on-surface-variant form-label small fw-semibold"
           >Country code</label

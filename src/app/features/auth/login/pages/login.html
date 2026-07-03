@@ -1,0 +1,222 @@
+<div class="login-body">
+  <div class="login-container">
+    <div class="login-left">
+      <div class="art-frame">
+        <img src="images/topic.png" alt="Spa Therapy Art" class="art-image" />
+      </div>
+    </div>
+
+    <div class="login-right">
+      <div class="login-card glass-card" id="formCard">
+        <div class="form-section active-form" id="loginFormSection">
+          <h2 class="form-title">Login</h2>
+          <form
+            [formGroup]="loginForm"
+            class="needs-validation"
+            [class.was-validated]="wasValidated()"
+            novalidate
+            (submit)="$event.preventDefault()">
+            <div class="form-group">
+              <label
+                for="userNameInput"
+                class="text-on-surface-variant login-form-label small fw-semibold"
+                >Username</label
+              >
+              <input
+                type="text"
+                id="userNameInput"
+                formControlName="userName"
+                class="ghost-input form-control"
+                placeholder="Enter your username"
+                required />
+              <div class="invalid-feedback">Please enter your username.</div>
+            </div>
+            <div class="form-group">
+              <label
+                for="passwordInput"
+                class="text-on-surface-variant login-form-label small fw-semibold"
+                >Password</label
+              >
+              <input
+                type="password"
+                id="passwordInput"
+                formControlName="password"
+                class="ghost-input form-control"
+                placeholder="Enter your password"
+                required />
+              <div class="invalid-feedback">Please enter your password.</div>
+            </div>
+            <div class="helpers-row">
+              <label class="checkbox-container">
+                <input type="checkbox" class="form-check-input" />
+                <span>Remember password</span>
+              </label>
+              <a
+                href="#"
+                (click)="$event.preventDefault()"
+                class="link-forgot"
+                id="btnForgotPassword"
+                ><i class="fa-solid fa-key me-2"></i>Forgot password?</a
+              >
+            </div>
+            <button type="submit" class="button btn w-100" (click)="handleLogin()">
+              <span class="fold"></span>
+              <div class="points-wrapper">
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+              </div>
+              <span class="inner"> <i class="fa-solid fa-right-from-bracket me-2"></i> Login </span>
+            </button>
+          </form>
+        </div>
+
+        <div class="form-section" id="resetFormSection">
+          <h2 class="form-title-step">Step 1: Send Verification Code</h2>
+          <form id="resetForm" (submit)="$event.preventDefault()">
+            <div class="form-group">
+              <label for="email" class="text-on-surface-variant login-form-label small fw-semibold"
+                >Email</label
+              >
+              <input
+                type="email"
+                id="email"
+                class="ghost-input form-control"
+                placeholder="Enter your email address"
+                required
+                autocomplete="email" />
+            </div>
+            <button type="button " class="button btn btn-step-submit w-100">
+              <span class="fold"></span>
+              <div class="points-wrapper">
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+              </div>
+              <span class="inner">
+                <i class="fa-regular fa-envelope me-2"></i> Send Verification Code
+              </span>
+            </button>
+            <div class="back-link-container">
+              <a href="#" (click)="$event.preventDefault()" class="link-back" id="btnBackToLogin"
+                ><i class="fa-solid fa-arrow-left me-2"></i>Back to Login</a
+              >
+            </div>
+          </form>
+        </div>
+
+        <div class="form-section" id="resetPasswordStep2Section">
+          <h2 class="form-title-step">Bước 2: đặt lại mật khẩu</h2>
+          <form id="resetPasswordStep2Form" (submit)="$event.preventDefault()">
+            <div class="form-group">
+              <label
+                for="resetUsername"
+                class="text-on-surface-variant login-form-label small fw-semibold"
+                >Tên đăng nhập</label
+              >
+              <input
+                type="text"
+                id="resetUsername"
+                class="ghost-input form-control"
+                placeholder="Nhập tên đăng nhập"
+                required />
+            </div>
+            <div class="form-group">
+              <label
+                for="resetNewPassword"
+                class="text-on-surface-variant login-form-label small fw-semibold"
+                >Mật khẩu mới</label
+              >
+              <input
+                type="password"
+                id="resetNewPassword"
+                class="ghost-input form-control"
+                placeholder="Nhập mật khẩu mới"
+                required />
+            </div>
+            <div class="form-group">
+              <label
+                for="resetPhone"
+                class="text-on-surface-variant login-form-label small fw-semibold"
+                >Số điện thoại đăng ký</label
+              >
+              <input
+                type="text"
+                id="resetPhone"
+                class="ghost-input form-control"
+                placeholder="Nhập số điện thoại đăng ký"
+                required />
+            </div>
+            <div class="form-group">
+              <label
+                for="resetOtp"
+                class="text-on-surface-variant login-form-label small fw-semibold"
+                >Otp</label
+              >
+              <input
+                type="text"
+                id="resetOtp"
+                class="ghost-input form-control"
+                placeholder="Nhập mã OTP"
+                required />
+            </div>
+            <button type="button " class="button btn btn-step-submit w-100">
+              <span class="fold"></span>
+              <div class="points-wrapper">
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+                <i class="point"></i>
+              </div>
+              <span class="inner"> <i class="fa-solid fa-user-plus me-2"></i> Register </span>
+            </button>
+            <div class="back-link-container">
+              <a
+                href="#"
+                (click)="$event.preventDefault()"
+                class="link-back"
+                id="btnStep2BackToLogin"
+                ><i class="fa-solid fa-arrow-left me-2"></i>Back to Login</a
+              >
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

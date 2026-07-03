@@ -19,7 +19,7 @@ export class CountryForm {
   countryForm = new FormGroup({
     id: new FormControl<string>(''),
     countryCode: new FormControl<string>({ value: '', disabled: true }),
-    countryName: new FormControl<string>('', { validators: [Validators.required] }),
+    countryName: new FormControl<string>(''),
     note: new FormControl<string>(''),
   });
 

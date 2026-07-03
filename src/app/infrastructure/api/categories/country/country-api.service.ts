@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BaseApiService } from '../../base/base.api.service';
+import { BaseApiService } from '../../base/base-api.service';
 import { PagingRequest, PagingResult } from '../../../../core/models/paging.model';
 import { ApiResponse } from '../../../../core/models/api.model';
 import { CountryModel } from '../../../../domain/categories/country/models/country.model';

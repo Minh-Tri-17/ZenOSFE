@@ -9,4 +9,7 @@ export const API_CONSTANTS = {
     import: 'CatCountry/Import',
     export: 'CatCountry/Export',
   },
+  account: {
+    login: 'Account/Authentication',
+  },
 };

@@ -8,8 +8,8 @@
   <div class="topbar-actions">
     <div class="notification-dropdown-wrapper dropdown">
       <button
-        class="topbar-btn topbar-btn-bell"
         type="button"
+        class="topbar-btn topbar-btn-bell"
         id="notificationToggleBtn"
         data-bs-toggle="dropdown"
         aria-expanded="false">
@@ -86,8 +86,8 @@
     </div>
     <div class="lang-dropdown-wrapper dropdown">
       <button
-        class="topbar-btn"
         type="button"
+        class="topbar-btn"
         id="langToggleBtn"
         data-bs-toggle="dropdown"
         aria-expanded="false">
@@ -116,21 +116,17 @@
         </a>
       </div>
     </div>
-    <button class="topbar-btn topbar-btn-sun" (click)="onToggleTheme()">
+
+    <button type="button" class="topbar-btn topbar-btn-sun" (click)="handleToggleTheme()">
       <i class="fa-solid" [class]="themeService.isDark() ? 'fa-sun' : 'fa-moon'"></i>
     </button>
-    <button
-      class="topbar-btn"
-      type="button"
-      data-bs-toggle="modal"
-      data-bs-target="#aboutModal"
-      aria-label="About ZenOS">
+    <button type="button" class="topbar-btn" data-bs-toggle="modal" data-bs-target="#aboutModal">
       <i class="fa-regular fa-circle-question"></i>
     </button>
     <div class="avatar-wrapper dropdown">
       <button
-        class="topbar-btn topbar-btn-avatar"
         type="button"
+        class="topbar-btn topbar-btn-avatar"
         id="avatarToggleBtn"
         data-bs-toggle="dropdown"
         aria-expanded="false">
@@ -154,7 +150,7 @@
           <span>Account Settings</span>
         </a>
         <div class="dropdown-divider"></div>
-        <a class="avatar-dropdown-item logout dropdown-item" href="login.html">
+        <a class="avatar-dropdown-item logout dropdown-item" (click)="handleLogout()">
           <i class="fa-solid fa-right-from-bracket"></i>
           <span>Logout</span>
         </a>
