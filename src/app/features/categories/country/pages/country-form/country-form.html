@@ -4,7 +4,12 @@
   </ng-container>
 
   <ng-container modal-content>
-    <form [formGroup]="countryForm" (submit)="$event.preventDefault()">
+    <form
+      [formGroup]="countryForm"
+      class="needs-validation"
+      [class.was-validated]="wasValidated()"
+      novalidate
+      (submit)="$event.preventDefault()">
       <div class="mb-3">
         <label for="countryCodeInput" class="text-on-surface-variant form-label small fw-semibold"
           >Country code</label
@@ -26,7 +31,9 @@
           class="ghost-input form-control"
           id="countryNameInput"
           formControlName="countryName"
-          placeholder="e.g. Vietnam" />
+          placeholder="e.g. Vietnam"
+          required />
+        <div class="invalid-feedback">Please enter your country name.</div>
       </div>
 
       <div class="mb-3">
@@ -38,7 +45,9 @@
           id="countryNoteInput"
           formControlName="note"
           rows="3"
-          placeholder="e.g. Primary database replica"></textarea>
+          placeholder="e.g. Primary database replica"
+          required></textarea>
+        <div class="invalid-feedback">Please enter your note.</div>
       </div>
     </form>
   </ng-container>
@@ -50,8 +59,7 @@
     <button
       type="submit"
       class="button btn"
-      data-bs-dismiss="modal"
-      [disabled]="!countryForm.valid"
+      [attr.data-bs-dismiss]="wasValidated() ? 'modal' : undefined"
       (click)="handleSave()">
       <span class="fold"></span>
       <div class="points-wrapper">

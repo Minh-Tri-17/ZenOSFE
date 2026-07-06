@@ -24,12 +24,16 @@
               >
               <input
                 type="text"
+                class="ghost-input form-control"
                 id="userNameInput"
                 formControlName="userName"
-                class="ghost-input form-control"
                 placeholder="Enter your username"
                 required />
-              <div class="invalid-feedback">Please enter your username.</div>
+              <div class="invalid-feedback">
+                @for (error of getErrors('userName'); track error) {
+                  <div>{{ error }}</div>
+                }
+              </div>
             </div>
             <div class="form-group">
               <label
@@ -39,12 +43,17 @@
               >
               <input
                 type="password"
+                class="ghost-input form-control"
                 id="passwordInput"
                 formControlName="password"
-                class="ghost-input form-control"
                 placeholder="Enter your password"
-                required />
-              <div class="invalid-feedback">Please enter your password.</div>
+                required
+                minlength="6" />
+              <div class="invalid-feedback">
+                @for (error of getErrors('password'); track error) {
+                  <div>{{ error }}</div>
+                }
+              </div>
             </div>
             <div class="helpers-row">
               <label class="checkbox-container">

@@ -20,5 +20,6 @@ export class Header {
 
   handleLogout() {
     this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }

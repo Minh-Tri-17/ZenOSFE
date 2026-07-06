@@ -1,7 +1,7 @@
 import { Component, computed, inject, NgModule, output, signal } from '@angular/core';
 import { CountryModel } from '../../../../../domain/categories/country/models/country.model';
 import { CountryFacade } from '../../country.facade';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Modal } from '../../../../../shared/components/modal/modal';
 
@@ -18,9 +18,9 @@ export class CountryForm {
 
   countryForm = new FormGroup({
     id: new FormControl<string>(''),
-    countryCode: new FormControl<string>({ value: '', disabled: true }),
-    countryName: new FormControl<string>(''),
-    note: new FormControl<string>(''),
+    countryCode: new FormControl<string>({ value: '', disabled: true }, [Validators.required]),
+    countryName: new FormControl<string>('', [Validators.required]),
+    note: new FormControl<string>('', [Validators.required]),
   });
 
   private formValueSignal = toSignal(this.countryForm.valueChanges, {
@@ -28,6 +28,8 @@ export class CountryForm {
   });
 
   title = computed(() => (this.formValueSignal()?.id ? 'Update' : 'Create'));
+
+  wasValidated = signal<boolean>(false);
 
   //#endregion
 
@@ -39,6 +41,12 @@ export class CountryForm {
 
   //#region //@ METHODS
 
+  constructor() {
+    this.countryForm.valueChanges.pipe(takeUntilDestroyed()).subscribe(() => {
+      this.wasValidated.set(false);
+    });
+  }
+
   initCreateForm() {
     this.countryForm.reset();
   }
@@ -48,6 +56,10 @@ export class CountryForm {
   }
 
   async handleSave() {
+    this.wasValidated.set(true);
+
+    if (this.countryForm.invalid) return;
+
     const item = this.countryForm.getRawValue() as CountryModel;
 
     item.id ? await this.facade.update(item) : await this.facade.create(item);

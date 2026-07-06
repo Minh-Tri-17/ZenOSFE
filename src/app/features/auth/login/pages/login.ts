@@ -4,8 +4,7 @@ import { AccountFacade } from '../../account.facade';
 import { AuthService } from '../../../../core/services/auth.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { AuthModel } from '../../../../domain/auth/models/auth.model';
-import { validate } from '@angular/forms/signals';
+import { AuthFields, AuthModel } from '../../../../domain/auth/models/auth.model';
 
 @Component({
   selector: 'app-login',
@@ -22,10 +21,30 @@ export class Login {
 
   loginForm = new FormGroup({
     userName: new FormControl<string>('', [Validators.required]),
-    password: new FormControl<string>('', [Validators.required]),
+    password: new FormControl<string>('', [Validators.required, Validators.minLength(6)]),
   });
 
   wasValidated = signal<boolean>(false);
+
+  getErrors(controlName: keyof typeof this.loginForm.controls): string[] {
+    const control = this.loginForm.controls[controlName];
+    if (!control) return [];
+
+    const errors: string[] = [];
+    const labelMap: Record<string, string> = AuthFields;
+    const displayName = labelMap[controlName] || String(controlName);
+
+    if (control.hasError('required')) {
+      errors.push(`Please enter your ${displayName}.`);
+    }
+    if (control.hasError('minlength')) {
+      const requiredLength = control.getError('minlength')?.requiredLength;
+      errors.push(
+        `${displayName.charAt(0).toUpperCase() + displayName.slice(1)} must be at least ${requiredLength} characters.`,
+      );
+    }
+    return errors;
+  }
 
   //#endregion
 

@@ -3674,6 +3674,75 @@ body {
   box-shadow: 0 0 12px rgba(180, 196, 249, 0.2) !important;
 }
 
+/* Ghost Input & Select Validation Styles (Global) */
+.was-validated .ghost-input:invalid,
+.ghost-input.is-invalid {
+  border-color: var(--color-error) !important;
+  padding-right: calc(1.5em + 0.75rem) !important;
+}
+
+.was-validated .ghost-select:invalid,
+.ghost-select.is-invalid {
+  border-color: var(--color-error) !important;
+  padding-right: calc(0.75em + 2.3125rem) !important;
+}
+
+.was-validated .ghost-input:invalid:hover,
+.was-validated .ghost-select:invalid:hover,
+.ghost-input.is-invalid:hover,
+.ghost-select.is-invalid:hover {
+  border-color: var(--color-error) !important;
+}
+
+.was-validated .ghost-input:invalid:focus,
+.was-validated .ghost-select:invalid:focus,
+.ghost-input.is-invalid:focus,
+.ghost-select.is-invalid:focus {
+  border-color: var(--color-error) !important;
+  box-shadow: 0 0 12px rgba(186, 26, 26, 0.25) !important;
+}
+
+[data-theme='dark'] .was-validated .ghost-input:invalid:focus,
+[data-theme='dark'] .was-validated .ghost-select:invalid:focus,
+[data-theme='dark'] .ghost-input.is-invalid:focus,
+[data-theme='dark'] .ghost-select.is-invalid:focus {
+  box-shadow: 0 0 12px rgba(255, 180, 171, 0.25) !important;
+}
+
+.was-validated .ghost-input:valid,
+.ghost-input.is-valid {
+  border-color: var(--color-success) !important;
+  padding-right: calc(1.5em + 0.75rem) !important;
+}
+
+.was-validated .ghost-select:valid,
+.ghost-select.is-valid {
+  border-color: var(--color-success) !important;
+  padding-right: calc(0.75em + 2.3125rem) !important;
+}
+
+.was-validated .ghost-input:valid:hover,
+.was-validated .ghost-select:valid:hover,
+.ghost-input.is-valid:hover,
+.ghost-select.is-valid:hover {
+  border-color: var(--color-success) !important;
+}
+
+.was-validated .ghost-input:valid:focus,
+.was-validated .ghost-select:valid:focus,
+.ghost-input.is-valid:focus,
+.ghost-select.is-valid:focus {
+  border-color: var(--color-success) !important;
+  box-shadow: 0 0 12px rgba(5, 150, 105, 0.25) !important;
+}
+
+[data-theme='dark'] .was-validated .ghost-input:valid:focus,
+[data-theme='dark'] .was-validated .ghost-select:valid:focus,
+[data-theme='dark'] .ghost-input.is-valid:focus,
+[data-theme='dark'] .ghost-select.is-valid:focus {
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.25) !important;
+}
+
 /* Modal Inner Borders */
 .glass-modal-content .modal-header {
   border-bottom: 1px solid rgba(15, 23, 42, 0.06) !important;
