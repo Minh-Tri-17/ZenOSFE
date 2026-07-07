@@ -12,7 +12,7 @@ export class Pagination {
   pageIndex = input<number>(1);
   pageSize = input<number>(10);
   totalRecord = input<number>(0);
-  recordRange = input<string>('');
+  recordRange = input<string>();
   pageCount = input<number>(0);
 
   //#endregion
@@ -24,7 +24,7 @@ export class Pagination {
 
   //#endregion
 
-  //#region //@ METHODS
+  //#region //@ STATE
 
   pages = computed(() => {
     const list = [];
@@ -35,6 +35,10 @@ export class Pagination {
 
     return list;
   });
+
+  //#endregion
+
+  //#region //@ METHODS
 
   handlePageSizeChange(event: Event) {
     const select = event.target as HTMLSelectElement;

@@ -1,8 +1,8 @@
 export interface CountryModel {
   id: string;
-  countryName?: string;
-  countryCode?: string;
-  note?: string;
+  countryName?: string | null;
+  countryCode?: string | null;
+  note?: string | null;
 
   createdAt?: Date;
   createdBy?: string;

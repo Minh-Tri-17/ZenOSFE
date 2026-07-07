@@ -13,7 +13,7 @@ export class Table {
   pageIndex = input<number>(1);
   pageSize = input<number>(10);
   totalRecord = input<number>(0);
-  recordRange = input<string>('');
+  recordRange = input<string>();
   pageCount = input<number>(0);
 
   //#endregion

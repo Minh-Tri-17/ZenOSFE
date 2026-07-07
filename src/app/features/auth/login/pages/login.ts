@@ -4,7 +4,8 @@ import { AccountFacade } from '../../account.facade';
 import { AuthService } from '../../../../core/services/auth.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { AuthFields, AuthModel } from '../../../../domain/auth/models/auth.model';
+import { AuthModel } from '../../../../domain/auth/models/auth.model';
+import { FormValidationService } from '../../../../core/services/form-validation.service';
 
 @Component({
   selector: 'app-login',
@@ -16,60 +17,53 @@ export class Login {
   private router = inject(Router);
   private authService = inject(AuthService);
   private facade = inject(AccountFacade);
+  private validationService = inject(FormValidationService);
 
   //#region //@ STATE
 
   loginForm = new FormGroup({
-    userName: new FormControl<string>('', [Validators.required]),
-    password: new FormControl<string>('', [Validators.required, Validators.minLength(6)]),
+    username: new FormControl(),
+    password: new FormControl(),
   });
 
   wasValidated = signal<boolean>(false);
 
-  getErrors(controlName: keyof typeof this.loginForm.controls): string[] {
-    const control = this.loginForm.controls[controlName];
-    if (!control) return [];
-
-    const errors: string[] = [];
-    const labelMap: Record<string, string> = AuthFields;
-    const displayName = labelMap[controlName] || String(controlName);
-
-    if (control.hasError('required')) {
-      errors.push(`Please enter your ${displayName}.`);
-    }
-    if (control.hasError('minlength')) {
-      const requiredLength = control.getError('minlength')?.requiredLength;
-      errors.push(
-        `${displayName.charAt(0).toUpperCase() + displayName.slice(1)} must be at least ${requiredLength} characters.`,
-      );
-    }
-    return errors;
-  }
-
   //#endregion
+
+  //#region //@ METHODS
 
   constructor() {
     this.loginForm.valueChanges.pipe(takeUntilDestroyed()).subscribe(() => {
       this.wasValidated.set(false);
+      this.validationService.clearServerErrors(this.loginForm);
     });
   }
-
-  //#region //@ OUTPUTS
-
-  //#endregion
-
-  //#region //@ METHODS
 
   async handleLogin() {
     this.wasValidated.set(true);
 
     if (this.loginForm.invalid) return;
 
-    const item = this.loginForm.getRawValue() as AuthModel;
-    const res = await this.facade.login(item);
+    const rawValues = this.loginForm.getRawValue() as AuthModel;
+    const item: AuthModel = {
+      username: rawValues.username?.trim() || null,
+      password: rawValues.password?.trim() || null,
+    };
 
-    this.authService.setToken(res?.result || '');
+    try {
+      const res = await this.facade.login(item);
 
-    if (this.authService.isLoggedIn()) this.router.navigate(['/country']);
+      this.authService.setToken(res?.result || '');
+
+      if (this.authService.isLoggedIn()) this.router.navigate(['/country']);
+    } catch (error: any) {
+      this.validationService.mapServerValidationErrors(error, this.loginForm);
+    }
   }
+
+  getErrors(controlName: keyof typeof this.loginForm.controls): string[] {
+    return this.validationService.getServerErrors(this.loginForm, controlName);
+  }
+
+  //#endregion
 }

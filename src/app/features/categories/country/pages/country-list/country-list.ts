@@ -58,9 +58,6 @@ export class CountryList {
   selectedIds = signal<Set<string>>(new Set());
 
   readonly countryFields = CountryFields;
-  returnZero() {
-    return 0;
-  }
 
   //#endregion
 
@@ -102,6 +99,10 @@ export class CountryList {
       });
 
     return filter;
+  }
+
+  returnZero() {
+    return 0;
   }
 
   //#endregion

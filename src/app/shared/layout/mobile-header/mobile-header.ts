@@ -12,6 +12,8 @@ export class MobileHeader {
   protected themeService = inject(ThemeService);
   private router = inject(Router);
 
+  //#region //@ METHODS
+
   handleToggleTheme() {
     this.themeService.toggleTheme();
   }
@@ -19,4 +21,6 @@ export class MobileHeader {
   handleLogout() {
     this.router.navigate(['/login']);
   }
+
+  //#endregion
 }

@@ -26,11 +26,11 @@
                 type="text"
                 class="ghost-input form-control"
                 id="userNameInput"
-                formControlName="userName"
+                formControlName="username"
                 placeholder="Enter your username"
-                required />
+                [class.is-invalid]="loginForm.controls.username.invalid && wasValidated()" />
               <div class="invalid-feedback">
-                @for (error of getErrors('userName'); track error) {
+                @for (error of getErrors('username'); track error) {
                   <div>{{ error }}</div>
                 }
               </div>
@@ -47,8 +47,7 @@
                 id="passwordInput"
                 formControlName="password"
                 placeholder="Enter your password"
-                required
-                minlength="6" />
+                [class.is-invalid]="loginForm.controls.password.invalid && wasValidated()" />
               <div class="invalid-feedback">
                 @for (error of getErrors('password'); track error) {
                   <div>{{ error }}</div>

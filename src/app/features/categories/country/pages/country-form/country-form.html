@@ -19,7 +19,13 @@
           class="ghost-input form-control"
           id="countryCodeInput"
           formControlName="countryCode"
-          placeholder="e.g. Cou000000" />
+          placeholder="e.g. Cou000000"
+          [class.is-invalid]="countryForm.controls.countryCode.invalid && wasValidated()" />
+        <div class="invalid-feedback">
+          @for (error of getErrors('countryCode'); track error) {
+            <div>{{ error }}</div>
+          }
+        </div>
       </div>
 
       <div class="mb-3">
@@ -32,8 +38,12 @@
           id="countryNameInput"
           formControlName="countryName"
           placeholder="e.g. Vietnam"
-          required />
-        <div class="invalid-feedback">Please enter your country name.</div>
+          [class.is-invalid]="countryForm.controls.countryName.invalid && wasValidated()" />
+        <div class="invalid-feedback">
+          @for (error of getErrors('countryName'); track error) {
+            <div>{{ error }}</div>
+          }
+        </div>
       </div>
 
       <div class="mb-3">
@@ -46,8 +56,13 @@
           formControlName="note"
           rows="3"
           placeholder="e.g. Primary database replica"
+          [class.is-invalid]="countryForm.controls.note.invalid && wasValidated()"
           required></textarea>
-        <div class="invalid-feedback">Please enter your note.</div>
+        <div class="invalid-feedback">
+          @for (error of getErrors('note'); track error) {
+            <div>{{ error }}</div>
+          }
+        </div>
       </div>
     </form>
   </ng-container>

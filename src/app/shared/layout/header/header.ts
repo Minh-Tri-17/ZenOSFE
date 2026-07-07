@@ -14,6 +14,8 @@ export class Header {
   protected authService = inject(AuthService);
   private router = inject(Router);
 
+  //#region //@ METHODS
+
   handleToggleTheme() {
     this.themeService.toggleTheme();
   }
@@ -22,4 +24,6 @@ export class Header {
     this.authService.logout();
     this.router.navigate(['/login']);
   }
+
+  //#endregion
 }

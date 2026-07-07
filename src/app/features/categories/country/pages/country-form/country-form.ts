@@ -1,9 +1,13 @@
 import { Component, computed, inject, NgModule, output, signal } from '@angular/core';
-import { CountryModel } from '../../../../../domain/categories/country/models/country.model';
+import {
+  CountryFields,
+  CountryModel,
+} from '../../../../../domain/categories/country/models/country.model';
 import { CountryFacade } from '../../country.facade';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Modal } from '../../../../../shared/components/modal/modal';
+import { FormValidationService } from '../../../../../core/services/form-validation.service';
 
 @Component({
   selector: 'app-country-form',
@@ -13,14 +17,15 @@ import { Modal } from '../../../../../shared/components/modal/modal';
 })
 export class CountryForm {
   private facade = inject(CountryFacade);
+  private validationService = inject(FormValidationService);
 
   //#region //@ STATE
 
   countryForm = new FormGroup({
     id: new FormControl<string>(''),
-    countryCode: new FormControl<string>({ value: '', disabled: true }, [Validators.required]),
-    countryName: new FormControl<string>('', [Validators.required]),
-    note: new FormControl<string>('', [Validators.required]),
+    countryCode: new FormControl({ value: '', disabled: true }),
+    countryName: new FormControl(),
+    note: new FormControl(),
   });
 
   private formValueSignal = toSignal(this.countryForm.valueChanges, {
@@ -44,6 +49,7 @@ export class CountryForm {
   constructor() {
     this.countryForm.valueChanges.pipe(takeUntilDestroyed()).subscribe(() => {
       this.wasValidated.set(false);
+      this.validationService.clearServerErrors(this.countryForm);
     });
   }
 
@@ -60,13 +66,27 @@ export class CountryForm {
 
     if (this.countryForm.invalid) return;
 
-    const item = this.countryForm.getRawValue() as CountryModel;
+    const rawValues = this.countryForm.getRawValue() as CountryModel;
+    const item: CountryModel = {
+      id: rawValues.id,
+      countryCode: rawValues.countryCode?.trim() || null,
+      countryName: rawValues.countryName?.trim() || null,
+      note: rawValues.note?.trim() || null,
+    };
 
-    item.id ? await this.facade.update(item) : await this.facade.create(item);
+    try {
+      item.id ? await this.facade.update(item) : await this.facade.create(item);
 
-    this.saveSuccess.emit();
+      this.saveSuccess.emit();
 
-    this.initCreateForm();
+      this.initCreateForm();
+    } catch (error: any) {
+      this.validationService.mapServerValidationErrors(error, this.countryForm);
+    }
+  }
+
+  getErrors(controlName: keyof typeof this.countryForm.controls): string[] {
+    return this.validationService.getServerErrors(this.countryForm, controlName);
   }
 
   //#endregion

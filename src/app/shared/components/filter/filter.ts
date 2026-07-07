@@ -11,9 +11,20 @@ import { Component, input, model, output, ViewEncapsulation } from '@angular/cor
   },
 })
 export class Filter {
+  //#region //@ INPUTS
+
   isDeleted = model<boolean>(false);
+
+  //#endregion
+
+  //#region //@ OUTPUTS
+
   search = output<void>();
   clear = output<void>();
+
+  //#endregion
+
+  //#region //@ METHODS
 
   handleIsDeleted(event: Event) {
     this.isDeleted.set((event.target as HTMLInputElement).checked);
@@ -27,4 +38,6 @@ export class Filter {
   handleClearFilter() {
     this.clear.emit();
   }
+
+  //#endregion
 }

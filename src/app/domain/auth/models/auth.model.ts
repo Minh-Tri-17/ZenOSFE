@@ -1,9 +1,9 @@
 export interface AuthModel {
-  userName?: string;
-  password?: string;
+  username?: string | null;
+  password?: string | null;
 }
 
 export const AuthFields: Record<keyof AuthModel, string> = {
-  userName: 'Username',
+  username: 'Username',
   password: 'Password',
 };

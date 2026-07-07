@@ -39,7 +39,7 @@ export class Import {
 
   //#region //@ HELPERS
 
-  private handleFile(file: File) {
+  private validateAndSetFile(file: File) {
     this.errorMessage.set('');
 
     const acceptTypes = this.acceptTypes();
@@ -118,7 +118,7 @@ export class Import {
     const input = event.target as HTMLInputElement;
     const file = input.files?.[0];
 
-    if (file) this.handleFile(file);
+    if (file) this.validateAndSetFile(file);
   }
 
   handleDragOver(event: DragEvent) {
@@ -143,7 +143,7 @@ export class Import {
 
     if (event.dataTransfer?.files && event.dataTransfer.files.length > 0) {
       const file = event.dataTransfer.files[0];
-      this.handleFile(file);
+      this.validateAndSetFile(file);
     }
   }
 
