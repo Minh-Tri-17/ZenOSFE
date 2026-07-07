@@ -80,8 +80,17 @@ export class CountryForm {
       this.saveSuccess.emit();
 
       this.initCreateForm();
+      this.closeModal();
     } catch (error: any) {
       this.validationService.mapServerValidationErrors(error, this.countryForm);
+    }
+  }
+
+  private closeModal() {
+    const modalEl = document.getElementById('countryModal');
+    if (modalEl) {
+      const bootstrapModal = (window as any).bootstrap?.Modal?.getInstance(modalEl);
+      bootstrapModal?.hide();
     }
   }
 
