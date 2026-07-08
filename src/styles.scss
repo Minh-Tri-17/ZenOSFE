@@ -4629,3 +4629,43 @@ body {
   }
 }
 
+.otp-container {
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+  margin-top: 6px;
+  width: 100%;
+}
+
+.otp-input {
+  flex: 1;
+  max-width: 45px;
+  height: 45px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: 0.5px solid var(--input-border-color);
+  background-color: transparent;
+  color: var(--color-primary);
+  transition: all 0.2s ease-in-out;
+}
+
+.otp-input:hover {
+  border-color: var(--input-focus-border);
+  box-shadow: 0 0 8px rgba(2, 103, 184, 0.12);
+}
+
+[data-theme='dark'] .otp-input:hover {
+  border-color: var(--input-focus-border);
+  box-shadow: 0 0 8px rgba(164, 201, 255, 0.18);
+}
+
+.otp-input:focus,
+.otp-input:focus-visible {
+  background-color: var(--input-focus-bg);
+  outline: none;
+  box-shadow: var(--input-focus-shadow);
+  border-color: var(--input-focus-border);
+  color: var(--color-primary);
+}

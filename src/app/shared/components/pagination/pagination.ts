@@ -24,8 +24,9 @@ export class Pagination {
 
   //#endregion
 
-  //#region //@ STATE
+  //#region //@ METHODS
 
+  //* computed() dùng để tính toán giá trị dựa trên state khác
   pages = computed(() => {
     const list = [];
 
@@ -35,10 +36,6 @@ export class Pagination {
 
     return list;
   });
-
-  //#endregion
-
-  //#region //@ METHODS
 
   handlePageSizeChange(event: Event) {
     const select = event.target as HTMLSelectElement;

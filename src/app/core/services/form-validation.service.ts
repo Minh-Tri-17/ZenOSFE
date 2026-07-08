@@ -6,6 +6,26 @@ import { FormGroup, AbstractControl } from '@angular/forms';
   providedIn: 'root',
 })
 export class FormValidationService {
+  //#region //@ HELPERS
+
+  private findControlCaseInsensitive(form: FormGroup, controlName: string): AbstractControl | null {
+    let control = form.get(controlName);
+    if (control) return control;
+
+    //* Object.keys(obj) trả về 1 mảng các property name (key) của object
+    const foundKey = Object.keys(form.controls).find(
+      (k) => k.toLowerCase() === controlName.toLowerCase(),
+    );
+
+    if (foundKey) return form.get(foundKey);
+
+    return null;
+  }
+
+  //#endregion
+
+  //#region //@ METHODS
+
   mapServerValidationErrors(error: any, form: FormGroup): boolean {
     if (!error) return false;
 
@@ -16,6 +36,7 @@ export class FormValidationService {
 
     if (!serverErrors || typeof serverErrors !== 'object') return false;
 
+    //* Object.keys(obj) trả về 1 mảng các property name (key) của object
     Object.keys(serverErrors).forEach((key) => {
       const control = this.findControlCaseInsensitive(form, key);
       if (control) {
@@ -45,24 +66,17 @@ export class FormValidationService {
   }
 
   clearServerErrors(form: FormGroup): void {
+    //* Object.keys(obj) trả về 1 mảng các property name (key) của object
     Object.keys(form.controls).forEach((key) => {
       const control = form.get(key);
       if (control && control.errors && control.errors['serverError']) {
         const { serverError, ...otherErrors } = control.errors;
+
+        //* Object.keys(obj) trả về 1 mảng các property name (key) của object
         control.setErrors(Object.keys(otherErrors).length > 0 ? otherErrors : null);
       }
     });
   }
 
-  private findControlCaseInsensitive(form: FormGroup, controlName: string): AbstractControl | null {
-    let control = form.get(controlName);
-    if (control) return control;
-
-    const targetKey = controlName.toLowerCase();
-    const foundKey = Object.keys(form.controls).find((k) => k.toLowerCase() === targetKey);
-
-    if (foundKey) return form.get(foundKey);
-
-    return null;
-  }
+  //#endregion
 }

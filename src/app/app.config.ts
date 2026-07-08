@@ -19,12 +19,12 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withInterceptors([responseInterceptor, authInterceptor])),
     provideAnimationsAsync(),
     provideToastr({
-      positionClass: 'toast-top-right', // vị trí
-      timeOut: 3000, // tự tắt sau 3s
-      progressBar: true, // thanh chạy
-      preventDuplicates: true, // tránh spam
-      enableHtml: true, // cho phép HTML trong nội dung
-      newestOnTop: true, // hiển thị thông báo mới nhất ở trên cùng
+      positionClass: 'toast-top-right', //* vị trí
+      timeOut: 3000, //* tự tắt sau 3s
+      progressBar: true, //* thanh chạy
+      preventDuplicates: true, //* tránh spam
+      enableHtml: true, //* cho phép HTML trong nội dung
+      newestOnTop: true, //* hiển thị thông báo mới nhất ở trên cùng
     }),
     { provide: CountryRepository, useClass: CountryRepositoryImpl },
     { provide: AuthRepository, useClass: AuthRepositoryImpl },

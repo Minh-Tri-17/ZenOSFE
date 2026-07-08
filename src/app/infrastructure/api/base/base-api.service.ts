@@ -18,8 +18,9 @@ export class BaseApiService {
 
     if (!params) return httpParams;
 
+    //* Object.entries(obj) trả về 1 mảng các cặp [key, value] của object
     Object.entries(params).forEach(([key, value]) => {
-      // Ngăn chặn tấn công Prototype Pollution
+      //* Ngăn chặn tấn công Prototype Pollution
       if (key === '__proto__' || key === 'constructor' || key === 'prototype') return;
 
       if (value !== undefined && value !== null) {

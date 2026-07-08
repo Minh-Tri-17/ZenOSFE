@@ -44,7 +44,11 @@ export class Login {
 
     if (this.loginForm.invalid) return;
 
+    //* getRawValue() lấy toàn bộ giá trị của form, kể cả ô bị disabled
+    //* as ép kiểu sang model tương ứng
     const rawValues = this.loginForm.getRawValue() as AuthModel;
+
+    //* gán || null để API có thể xử lý validate theo required.
     const item: AuthModel = {
       username: rawValues.username?.trim() || null,
       password: rawValues.password?.trim() || null,

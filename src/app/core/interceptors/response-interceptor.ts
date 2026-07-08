@@ -12,13 +12,11 @@ export const responseInterceptor: HttpInterceptorFn = (req, next) => {
       if (event instanceof HttpResponse) {
         if (req.method == 'GET') return;
 
-        const body = event.body;
+        if (!isApiResponse(event.body)) return;
 
-        if (!isApiResponse(body)) return;
+        if (event.body.isSuccess && event.body.message) toastr.success(event.body.message);
 
-        if (body.isSuccess && body.message) toastr.success(body.message);
-
-        if (!body.isSuccess && body.message) toastr.error(body.message);
+        if (!event.body.isSuccess && event.body.message) toastr.error(event.body.message);
       }
     }),
   );

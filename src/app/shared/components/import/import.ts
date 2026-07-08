@@ -128,15 +128,14 @@ export class Import {
     if (!this.isImporting()) this.isDragOver.set(true);
   }
 
-  handleDragLeave(event: DragEvent) {
-    event.preventDefault();
-    event.stopPropagation();
+  handleDragLeave() {
     this.isDragOver.set(false);
   }
 
   handleDrop(event: DragEvent) {
     event.preventDefault();
     event.stopPropagation();
+
     this.isDragOver.set(false);
 
     if (this.isImporting()) return;

@@ -15,7 +15,7 @@ export class AuthService {
   }
 
   isLoggedIn(): boolean {
-    return !!this.getToken();
+    return !!this.getToken(); //* !! giúp ép kiểu sang Boolean
   }
 
   logout() {

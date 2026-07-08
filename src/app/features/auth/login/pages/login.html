@@ -180,17 +180,52 @@
                 required />
             </div>
             <div class="form-group">
-              <label
-                for="resetOtp"
-                class="text-on-surface-variant login-form-label small fw-semibold"
-                >Otp</label
-              >
-              <input
-                type="text"
-                id="resetOtp"
-                class="ghost-input form-control"
-                placeholder="Nhập mã OTP"
-                required />
+              <label class="text-on-surface-variant login-form-label small fw-semibold">Otp</label>
+              <div class="otp-container">
+                <input
+                  type="text"
+                  class="otp-input"
+                  maxlength="1"
+                  pattern="[0-9]"
+                  inputmode="numeric"
+                  required />
+                <input
+                  type="text"
+                  class="otp-input"
+                  maxlength="1"
+                  pattern="[0-9]"
+                  inputmode="numeric"
+                  required />
+                <input
+                  type="text"
+                  class="otp-input"
+                  maxlength="1"
+                  pattern="[0-9]"
+                  inputmode="numeric"
+                  required />
+                <input
+                  type="text"
+                  class="otp-input"
+                  maxlength="1"
+                  pattern="[0-9]"
+                  inputmode="numeric"
+                  required />
+                <input
+                  type="text"
+                  class="otp-input"
+                  maxlength="1"
+                  pattern="[0-9]"
+                  inputmode="numeric"
+                  required />
+                <input
+                  type="text"
+                  class="otp-input"
+                  maxlength="1"
+                  pattern="[0-9]"
+                  inputmode="numeric"
+                  required />
+              </div>
+              <input type="hidden" id="resetOtp" />
             </div>
             <button type="button " class="button btn btn-step-submit w-100">
               <span class="fold"></span>

@@ -36,11 +36,12 @@ export class Export {
   progressStatus = signal('Preparing export...');
   showProgress = signal(false);
 
-  canExportSelectItems = computed(() => this.selectedIds().size > 0);
-
   //#endregion
 
   //#region //@ HELPERS
+
+  //* computed() dùng để tính toán giá trị dựa trên state khác
+  canExportSelectItems = computed(() => this.selectedIds().size > 0);
 
   private buildExportFilter(option: ExportOption): PagingRequest {
     const baseFilter = { ...this.currentFilters() };
@@ -91,6 +92,7 @@ export class Export {
   }
 
   private getFileExtension(mimeType: string): string {
+    //* mimeMap bảng tra cứu giúp quy đổi định dạng MIME type sang đuôi file (extension) tương ứng.
     const mimeMap: Record<string, string> = {
       'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': '.xlsx',
       'application/vnd.ms-excel': '.xls',

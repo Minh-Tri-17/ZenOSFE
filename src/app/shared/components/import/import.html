@@ -9,7 +9,7 @@
       [class.disabled]="isImporting()"
       (click)="handleTriggerFileInput()"
       (dragover)="handleDragOver($event)"
-      (dragleave)="handleDragLeave($event)"
+      (dragleave)="handleDragLeave()"
       (drop)="handleDrop($event)">
       @if (selectedFile() == null) {
         <i class="fa-solid fa-cloud-arrow-up fs-3 text-secondary mb-2"></i>

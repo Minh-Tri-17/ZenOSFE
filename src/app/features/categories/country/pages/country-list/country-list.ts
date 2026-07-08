@@ -109,6 +109,7 @@ export class CountryList {
 
   //#region //@ METHODS
 
+  //* computed() dùng để tính toán giá trị dựa trên state khác
   displayCount = computed(() => {
     const size = this.selectedIds().size;
     return size > 0 ? `(${size})` : '';
