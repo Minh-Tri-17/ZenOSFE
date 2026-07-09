@@ -300,7 +300,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
-  min-height: calc(100vh + 100px);
+  min-height: 100vh;
 }
 
 .text-headline-lg {
@@ -1842,6 +1842,19 @@ body {
 
 .submenu-link:hover i {
   opacity: 1;
+}
+
+.submenu-link-active i {
+  opacity: 1;
+}
+
+.submenu-link-active span {
+  transform: translateX(4px);
+}
+
+.submenu-link-active::before {
+  width: 10px;
+  background-color: var(--color-primary);
 }
 
 .sidebar-footer {
@@ -4669,3 +4682,11 @@ body {
   border-color: var(--input-focus-border);
   color: var(--color-primary);
 }
+
+app-country-form,
+app-export,
+app-import,
+app-modal {
+  display: contents;
+}
+

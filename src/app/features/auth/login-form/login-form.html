@@ -1,0 +1,74 @@
+<div class="form-section" [class.active-form]="isActiveForm()">
+  <h2 class="form-title">Login</h2>
+  <form
+    class="needs-validation"
+    novalidate
+    [formGroup]="loginForm"
+    [class.was-validated]="wasValidated()"
+    (submit)="$event.preventDefault()">
+    <div class="form-group">
+      <label for="userNameInput" class="text-on-surface-variant login-form-label small fw-semibold"
+        >Username</label
+      >
+      <input
+        type="text"
+        class="ghost-input form-control"
+        id="userNameInput"
+        formControlName="username"
+        placeholder="Enter your username"
+        [class.is-invalid]="loginForm.controls.username.invalid && wasValidated()" />
+      <div class="invalid-feedback">
+        @for (error of getErrors('username'); track error) {
+          <div>{{ error }}</div>
+        }
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="passwordInput" class="text-on-surface-variant login-form-label small fw-semibold"
+        >Password</label
+      >
+      <input
+        type="password"
+        class="ghost-input form-control"
+        id="passwordInput"
+        formControlName="password"
+        placeholder="Enter your password"
+        [class.is-invalid]="loginForm.controls.password.invalid && wasValidated()" />
+      <div class="invalid-feedback">
+        @for (error of getErrors('password'); track error) {
+          <div>{{ error }}</div>
+        }
+      </div>
+    </div>
+    <div class="helpers-row">
+      <label class="checkbox-container">
+        <input type="checkbox" formControlName="remember" class="form-check-input" />
+        <span>Remember password</span>
+      </label>
+      <a href="#" (click)="handleForgot($event)" class="link-forgot">
+        <i class="fa-solid fa-key me-2"></i>Forgot password?
+      </a>
+    </div>
+    <button type="submit" class="button btn w-100" (click)="handleLogin()">
+      <span class="fold"></span>
+      <div class="points-wrapper">
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+      </div>
+      <span class="inner"> <i class="fa-solid fa-right-from-bracket me-2"></i> Login </span>
+    </button>
+  </form>
+</div>

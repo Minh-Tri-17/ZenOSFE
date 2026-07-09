@@ -1,0 +1,118 @@
+<div class="form-section" [class.active-form]="isActiveForm()">
+  <h2 class="form-title-step">Bước 2: đặt lại mật khẩu</h2>
+  <form
+    class="needs-validation"
+    [class.was-validated]="wasValidated()"
+    novalidate
+    (submit)="$event.preventDefault()">
+    <div class="form-group">
+      <label for="resetUsername" class="text-on-surface-variant login-form-label small fw-semibold"
+        >Tên đăng nhập</label
+      >
+      <input
+        type="text"
+        id="resetUsername"
+        class="ghost-input form-control"
+        placeholder="Nhập tên đăng nhập"
+        required />
+    </div>
+    <div class="form-group">
+      <label
+        for="resetNewPassword"
+        class="text-on-surface-variant login-form-label small fw-semibold"
+        >Mật khẩu mới</label
+      >
+      <input
+        type="password"
+        id="resetNewPassword"
+        class="ghost-input form-control"
+        placeholder="Nhập mật khẩu mới"
+        required />
+    </div>
+    <div class="form-group">
+      <label for="resetPhone" class="text-on-surface-variant login-form-label small fw-semibold"
+        >Số điện thoại đăng ký</label
+      >
+      <input
+        type="text"
+        id="resetPhone"
+        class="ghost-input form-control"
+        placeholder="Nhập số điện thoại đăng ký"
+        required />
+    </div>
+    <div class="form-group">
+      <label class="text-on-surface-variant login-form-label small fw-semibold">Otp</label>
+      <div class="otp-container">
+        <input
+          type="text"
+          class="otp-input"
+          maxlength="1"
+          pattern="[0-9]"
+          inputmode="numeric"
+          required />
+        <input
+          type="text"
+          class="otp-input"
+          maxlength="1"
+          pattern="[0-9]"
+          inputmode="numeric"
+          required />
+        <input
+          type="text"
+          class="otp-input"
+          maxlength="1"
+          pattern="[0-9]"
+          inputmode="numeric"
+          required />
+        <input
+          type="text"
+          class="otp-input"
+          maxlength="1"
+          pattern="[0-9]"
+          inputmode="numeric"
+          required />
+        <input
+          type="text"
+          class="otp-input"
+          maxlength="1"
+          pattern="[0-9]"
+          inputmode="numeric"
+          required />
+        <input
+          type="text"
+          class="otp-input"
+          maxlength="1"
+          pattern="[0-9]"
+          inputmode="numeric"
+          required />
+      </div>
+      <input type="hidden" id="resetOtp" />
+    </div>
+    <button type="button " class="button btn btn-step-submit w-100">
+      <span class="fold"></span>
+      <div class="points-wrapper">
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+        <i class="point"></i>
+      </div>
+      <span class="inner"> <i class="fa-solid fa-user-plus me-2"></i> Register </span>
+    </button>
+    <div class="back-link-container">
+      <a href="#" (click)="handleBackToLogin($event)" class="link-back" id="btnStep2BackToLogin"
+        ><i class="fa-solid fa-arrow-left me-2"></i>Back to Login</a
+      >
+    </div>
+  </form>
+</div>

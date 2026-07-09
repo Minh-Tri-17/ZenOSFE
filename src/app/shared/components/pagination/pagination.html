@@ -30,6 +30,7 @@
         <button
           type="button"
           class="ghost-button page-btn text-on-surface-variant btn btn-sm"
+          [disabled]="page === pageIndex()"
           [class]="page === pageIndex() ? 'page-btn-active' : ''"
           (click)="handlePageIndexChange(page)">
           {{ page }}

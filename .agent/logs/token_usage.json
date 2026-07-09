@@ -115,5 +115,50 @@
     "output_tokens": 3500,
     "total_tokens": 65500,
     "estimated_cost_usd": 0.007
+  },
+  {
+    "session_id": "68bee3ec-db4d-4dd7-9da7-0c3e494757e6",
+    "timestamp": "2026-07-08T17:08:00+07:00",
+    "model_name": "Gemini 3.5 Flash (High)",
+    "input_tokens": 55000,
+    "output_tokens": 3000,
+    "total_tokens": 58000,
+    "estimated_cost_usd": 0.006
+  },
+  {
+    "session_id": "68bee3ec-db4d-4dd7-9da7-0c3e494757e6",
+    "timestamp": "2026-07-08T17:10:00+07:00",
+    "model_name": "Gemini 3.5 Flash (High)",
+    "input_tokens": 58000,
+    "output_tokens": 2500,
+    "total_tokens": 60500,
+    "estimated_cost_usd": 0.006
+  },
+  {
+    "session_id": "857435df-a6a4-4026-9d6b-f63fbccfcd1c",
+    "timestamp": "2026-07-09T09:30:50+07:00",
+    "model_name": "Gemini 3.5 Flash (High)",
+    "input_tokens": 65000,
+    "output_tokens": 4500,
+    "total_tokens": 69500,
+    "estimated_cost_usd": 0.0075
+  },
+  {
+    "session_id": "857435df-a6a4-4026-9d6b-f63fbccfcd1c",
+    "timestamp": "2026-07-09T09:40:40+07:00",
+    "model_name": "Gemini 3.5 Flash (High)",
+    "input_tokens": 40000,
+    "output_tokens": 1500,
+    "total_tokens": 41500,
+    "estimated_cost_usd": 0.0045
+  },
+  {
+    "session_id": "857435df-a6a4-4026-9d6b-f63fbccfcd1c",
+    "timestamp": "2026-07-09T09:47:50+07:00",
+    "model_name": "Gemini 3.5 Flash (High)",
+    "input_tokens": 40000,
+    "output_tokens": 1500,
+    "total_tokens": 41500,
+    "estimated_cost_usd": 0.0045
   }
 ]

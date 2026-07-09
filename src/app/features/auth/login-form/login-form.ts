@@ -1,19 +1,19 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, computed } from '@angular/core';
 import { Router } from '@angular/router';
-import { AccountFacade } from '../../account.facade';
-import { AuthService } from '../../../../core/services/auth.service';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AccountFacade } from '../account.facade';
+import { AuthService } from '../../../core/services/auth.service';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { AuthModel } from '../../../../domain/auth/models/auth.model';
-import { FormValidationService } from '../../../../core/services/form-validation.service';
+import { AuthModel } from '../../../domain/auth/models/auth.model';
+import { FormValidationService } from '../../../core/services/form-validation.service';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-login-form',
   imports: [ReactiveFormsModule],
-  templateUrl: './login.html',
-  styleUrl: './login.scss',
+  templateUrl: './login-form.html',
+  styleUrl: './login-form.scss',
 })
-export class Login {
+export class LoginForm {
   private router = inject(Router);
   private authService = inject(AuthService);
   private facade = inject(AccountFacade);
@@ -24,9 +24,11 @@ export class Login {
   loginForm = new FormGroup({
     username: new FormControl(),
     password: new FormControl(),
+    remember: new FormControl<boolean>(false),
   });
 
   wasValidated = signal<boolean>(false);
+  isActiveForm = computed(() => this.facade.activeForm() === 'login');
 
   //#endregion
 
@@ -52,6 +54,7 @@ export class Login {
     const item: AuthModel = {
       username: rawValues.username?.trim() || null,
       password: rawValues.password?.trim() || null,
+      remember: rawValues.remember,
     };
 
     try {
@@ -67,6 +70,11 @@ export class Login {
 
   getErrors(controlName: keyof typeof this.loginForm.controls): string[] {
     return this.validationService.getServerErrors(this.loginForm, controlName);
+  }
+
+  handleForgot(event: Event) {
+    event.preventDefault();
+    this.facade.showOtp();
   }
 
   //#endregion
