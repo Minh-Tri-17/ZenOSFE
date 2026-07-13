@@ -62,50 +62,21 @@
     <div class="form-group">
       <label class="text-on-surface-variant login-form-label small fw-semibold">Otp</label>
       <div class="otp-container">
-        <input
-          type="text"
-          class="otp-input"
-          maxlength="1"
-          pattern="[0-9]"
-          inputmode="numeric"
-          required />
-        <input
-          type="text"
-          class="otp-input"
-          maxlength="1"
-          pattern="[0-9]"
-          inputmode="numeric"
-          required />
-        <input
-          type="text"
-          class="otp-input"
-          maxlength="1"
-          pattern="[0-9]"
-          inputmode="numeric"
-          required />
-        <input
-          type="text"
-          class="otp-input"
-          maxlength="1"
-          pattern="[0-9]"
-          inputmode="numeric"
-          required />
-        <input
-          type="text"
-          class="otp-input"
-          maxlength="1"
-          pattern="[0-9]"
-          inputmode="numeric"
-          required />
-        <input
-          type="text"
-          class="otp-input"
-          maxlength="1"
-          pattern="[0-9]"
-          inputmode="numeric"
-          required />
+        @for (i of [0, 1, 2, 3, 4, 5]; track i) {
+          <input
+            #otpInput
+            type="text"
+            class="otp-input"
+            maxlength="1"
+            pattern="[0-9]"
+            inputmode="numeric"
+            autocomplete="one-time-code"
+            (keydown)="handleOtpKeydown($event, i)"
+            (input)="handleOtpInput($event, i)"
+            (focus)="handleOtpFocus(i)"
+            (paste)="handleOtpPaste($event, i)" />
+        }
       </div>
-      <input type="hidden" id="resetOtp" />
     </div>
     <button type="button" class="button btn btn-step-submit w-100" (click)="handleReset()">
       <span class="fold"></span>

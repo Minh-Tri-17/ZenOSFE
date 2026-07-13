@@ -2,7 +2,6 @@ import { Component, computed, input, signal } from '@angular/core';
 import { Modal } from '../modal/modal';
 import { PagingRequest } from '../../../core/models/paging.model';
 import { BASE_CONSTANTS } from '../../../core/constants/base.constant';
-import { single } from 'rxjs';
 import { FilterOperator, FilterType } from '../../../core/enums/filter.enum';
 
 export type ExportOption =

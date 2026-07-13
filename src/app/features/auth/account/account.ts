@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 import { OtpForm } from '../otp-form/otp-form';
 import { ResetForm } from '../reset-form/reset-form';
@@ -10,4 +10,11 @@ import { LoginForm } from '../login-form/login-form';
   templateUrl: './account.html',
   styleUrl: './account.scss',
 })
-export class Account {}
+export class Account {
+  otpEmail = signal<string>('');
+
+  setOtpEmail(email: string) {
+    this.otpEmail.set(email);
+  }
+}
+

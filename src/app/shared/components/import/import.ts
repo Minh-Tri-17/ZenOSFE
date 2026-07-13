@@ -97,6 +97,7 @@ export class Import {
   }
 
   private resetFileInput() {
+    //* nativeElement lắng nghe sự thay đổi giá trị của form.
     const input = this.fileInput()?.nativeElement;
     if (input) input.value = '';
   }
@@ -111,6 +112,8 @@ export class Import {
 
   handleTriggerFileInput() {
     if (this.isImporting()) return;
+
+    //* nativeElement lắng nghe sự thay đổi giá trị của form.
     this.fileInput()?.nativeElement.click();
   }
 

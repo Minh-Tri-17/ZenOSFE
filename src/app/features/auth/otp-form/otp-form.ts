@@ -1,5 +1,4 @@
-import { Component, inject, signal, computed } from '@angular/core';
-import { AuthService } from '../../../core/services/auth.service';
+import { Component, inject, signal, computed, output } from '@angular/core';
 import { AccountFacade } from '../account.facade';
 import { FormValidationService } from '../../../core/services/form-validation.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
@@ -15,6 +14,12 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 export class OtpForm {
   private facade = inject(AccountFacade);
   private validationService = inject(FormValidationService);
+
+  //#region //@ INPUT
+
+  email = output<string>();
+
+  //#endregion
 
   //#region //@ STATE
 
@@ -54,7 +59,7 @@ export class OtpForm {
 
     try {
       await this.facade.sendOtp(item);
-
+      this.email.emit(rawValues.to?.trim() || '');
       this.facade.showReset();
     } catch (error: any) {
       this.wasValidated.set(true);

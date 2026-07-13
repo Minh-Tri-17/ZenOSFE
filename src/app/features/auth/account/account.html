@@ -10,9 +10,9 @@
       <div class="login-card glass-card">
         <app-login-form></app-login-form>
 
-        <app-otp-form></app-otp-form>
+        <app-otp-form (email)="setOtpEmail($event)"></app-otp-form>
 
-        <app-reset-form></app-reset-form>
+        <app-reset-form [email]="otpEmail()"></app-reset-form>
       </div>
     </div>
   </div>
