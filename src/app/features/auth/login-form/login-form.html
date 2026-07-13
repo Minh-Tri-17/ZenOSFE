@@ -17,6 +17,7 @@
         formControlName="username"
         placeholder="Enter your username"
         [class.is-invalid]="loginForm.controls.username.invalid && wasValidated()" />
+
       <div class="invalid-feedback">
         @for (error of getErrors('username'); track error) {
           <div>{{ error }}</div>

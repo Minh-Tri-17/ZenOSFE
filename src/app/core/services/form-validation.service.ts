@@ -32,7 +32,10 @@ export class FormValidationService {
     const errorResponse = error instanceof HttpErrorResponse ? error.error : error;
 
     const serverErrors =
-      errorResponse?.errors || errorResponse?.validationErrors || error?.error?.errors;
+      errorResponse ||
+      errorResponse?.errors ||
+      errorResponse?.validationErrors ||
+      error?.error?.errors;
 
     if (!serverErrors || typeof serverErrors !== 'object') return false;
 
@@ -63,19 +66,6 @@ export class FormValidationService {
     if (control.hasError('serverError')) errors.push(control.getError('serverError'));
 
     return errors;
-  }
-
-  clearServerErrors(form: FormGroup): void {
-    //* Object.keys(obj) trả về 1 mảng các property name (key) của object
-    Object.keys(form.controls).forEach((key) => {
-      const control = form.get(key);
-      if (control && control.errors && control.errors['serverError']) {
-        const { serverError, ...otherErrors } = control.errors;
-
-        //* Object.keys(obj) trả về 1 mảng các property name (key) của object
-        control.setErrors(Object.keys(otherErrors).length > 0 ? otherErrors : null);
-      }
-    });
   }
 
   //#endregion

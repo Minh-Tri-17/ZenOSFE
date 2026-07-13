@@ -1,5 +1,8 @@
 import { Component, computed, inject, output, signal } from '@angular/core';
-import { CountryModel } from '../../../../../domain/categories/country/models/country.model';
+import {
+  CountryFields,
+  CountryModel,
+} from '../../../../../domain/categories/country/models/country.model';
 import { CountryFacade } from '../../country.facade';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
@@ -50,7 +53,6 @@ export class CountryForm {
     //* takeUntilDestroyed() để hủy subscription khi component bị hủy
     this.countryForm.valueChanges.pipe(takeUntilDestroyed()).subscribe(() => {
       this.wasValidated.set(false);
-      this.validationService.clearServerErrors(this.countryForm);
     });
   }
 
@@ -63,10 +65,6 @@ export class CountryForm {
   }
 
   async handleSave() {
-    this.wasValidated.set(true);
-
-    if (this.countryForm.invalid) return;
-
     //* getRawValue() lấy toàn bộ giá trị của form, kể cả ô bị disabled
     //* as ép kiểu sang model tương ứng
     const rawValues = this.countryForm.getRawValue() as CountryModel;
@@ -88,6 +86,8 @@ export class CountryForm {
 
       this.closeModal();
     } catch (error: any) {
+      this.wasValidated.set(true);
+
       this.validationService.mapServerValidationErrors(error, this.countryForm);
     }
   }
@@ -100,7 +100,7 @@ export class CountryForm {
     }
   }
 
-  getErrors(controlName: keyof typeof this.countryForm.controls): string[] {
+  getErrors(controlName: keyof typeof CountryFields): string[] {
     return this.validationService.getServerErrors(this.countryForm, controlName);
   }
 

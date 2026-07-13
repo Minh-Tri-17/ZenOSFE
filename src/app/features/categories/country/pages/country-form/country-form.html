@@ -56,8 +56,7 @@
           formControlName="note"
           rows="3"
           placeholder="e.g. Primary database replica"
-          [class.is-invalid]="countryForm.controls.note.invalid && wasValidated()"
-          required></textarea>
+          [class.is-invalid]="countryForm.controls.note.invalid && wasValidated()"></textarea>
         <div class="invalid-feedback">
           @for (error of getErrors('note'); track error) {
             <div>{{ error }}</div>
@@ -71,10 +70,7 @@
     <button type="button" class="ghost-button btn btn-sm" data-bs-dismiss="modal">
       <i class="fa-solid fa-xmark me-1"></i>Cancel
     </button>
-    <button
-      type="submit"
-      class="button btn"
-      (click)="handleSave()">
+    <button type="submit" class="button btn" (click)="handleSave()">
       <span class="fold"></span>
       <div class="points-wrapper">
         <i class="point"></i>

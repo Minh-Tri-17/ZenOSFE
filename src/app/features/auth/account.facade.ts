@@ -1,6 +1,9 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { LoginAccountUseCase } from '../../use-cases/auth/login-account.usecase';
+import { LoginUseCase } from '../../use-cases/auth/login.usecase';
 import { AuthModel } from '../../domain/auth/models/auth.model';
+import { MailModel } from '../../core/models/mail.model';
+import { SendOTPUseCase } from '../../use-cases/auth/send-otp.usecase';
+import { ResetPassUseCase } from '../../use-cases/auth/reset-pass.usecase';
 
 export type ActiveFormType = 'login' | 'otp' | 'reset';
 
@@ -8,7 +11,9 @@ export type ActiveFormType = 'login' | 'otp' | 'reset';
   providedIn: 'root',
 })
 export class AccountFacade {
-  private readonly loginUC = inject(LoginAccountUseCase);
+  private readonly loginUC = inject(LoginUseCase);
+  private readonly sendOtpUC = inject(SendOTPUseCase);
+  private readonly resetUC = inject(ResetPassUseCase);
 
   //#region //@ STATE
 
@@ -20,6 +25,14 @@ export class AccountFacade {
 
   login(data: AuthModel) {
     return this.loginUC.execute(data);
+  }
+
+  sendOtp(data: MailModel) {
+    return this.sendOtpUC.execute(data);
+  }
+
+  reset(data: AuthModel) {
+    return this.resetUC.execute(data);
   }
 
   showLogin() {

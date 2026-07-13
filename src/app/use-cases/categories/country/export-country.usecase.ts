@@ -1,6 +1,6 @@
-import { inject, Injectable } from '@angular/core';
-import { CountryRepository } from '../../../domain/categories/country/repositories/country.repository';
+import { Injectable, inject } from '@angular/core';
 import { PagingRequest } from '../../../core/models/paging.model';
+import { CountryRepository } from '../../../domain/categories/country/repositories/country.repository';
 
 @Injectable({
   providedIn: 'root',

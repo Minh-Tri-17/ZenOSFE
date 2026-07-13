@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { env } from '../../../../environments/environment';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 
 @Injectable({
@@ -46,15 +46,29 @@ export class BaseApiService {
   }
 
   protected postHttp<T>(url: string, body: any): Promise<T> {
-    return firstValueFrom(this.http.post<T>(`${this.baseUrl}${url}`, body));
+    const headers = new HttpHeaders({
+      'Accept-Language': 'en',
+    });
+
+    return firstValueFrom(this.http.post<T>(`${this.baseUrl}${url}`, body, { headers: headers }));
   }
 
   protected postBlobHttp(url: string, body: any): Promise<Blob> {
-    return firstValueFrom(this.http.post(`${this.baseUrl}${url}`, body, { responseType: 'blob' }));
+    const headers = new HttpHeaders({
+      'Accept-Language': 'en',
+    });
+
+    return firstValueFrom(
+      this.http.post(`${this.baseUrl}${url}`, body, { headers: headers, responseType: 'blob' }),
+    );
   }
 
   protected patchHttp<T>(url: string, body: any): Promise<T> {
-    return firstValueFrom(this.http.patch<T>(`${this.baseUrl}${url}`, body));
+    const headers = new HttpHeaders({
+      'Accept-Language': 'en',
+    });
+
+    return firstValueFrom(this.http.patch<T>(`${this.baseUrl}${url}`, body, { headers: headers }));
   }
 
   protected deleteHttp<T>(url: string): Promise<T> {

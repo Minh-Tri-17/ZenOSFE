@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { CountryRepository } from '../../../domain/categories/country/repositories/country.repository';
 
 @Injectable({

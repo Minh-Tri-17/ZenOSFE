@@ -11,5 +11,7 @@ export const API_CONSTANTS = {
   },
   account: {
     login: 'Account/Authentication',
+    sendOTP: 'Account/SendOTP',
+    resetPass: 'Account/ResetPassword',
   },
 };

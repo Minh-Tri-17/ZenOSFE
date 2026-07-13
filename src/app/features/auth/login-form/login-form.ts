@@ -4,7 +4,7 @@ import { AccountFacade } from '../account.facade';
 import { AuthService } from '../../../core/services/auth.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { AuthModel } from '../../../domain/auth/models/auth.model';
+import { AuthFields, AuthModel } from '../../../domain/auth/models/auth.model';
 import { FormValidationService } from '../../../core/services/form-validation.service';
 
 @Component({
@@ -35,17 +35,14 @@ export class LoginForm {
   //#region //@ METHODS
 
   constructor() {
+    //* subscribe() vào sự kiện thay đổi giá trị của form
+    //* takeUntilDestroyed() để hủy subscription khi component bị hủy
     this.loginForm.valueChanges.pipe(takeUntilDestroyed()).subscribe(() => {
       this.wasValidated.set(false);
-      this.validationService.clearServerErrors(this.loginForm);
     });
   }
 
   async handleLogin() {
-    this.wasValidated.set(true);
-
-    if (this.loginForm.invalid) return;
-
     //* getRawValue() lấy toàn bộ giá trị của form, kể cả ô bị disabled
     //* as ép kiểu sang model tương ứng
     const rawValues = this.loginForm.getRawValue() as AuthModel;
@@ -64,17 +61,18 @@ export class LoginForm {
 
       if (this.authService.isLoggedIn()) this.router.navigate(['/country']);
     } catch (error: any) {
+      this.wasValidated.set(true);
       this.validationService.mapServerValidationErrors(error, this.loginForm);
     }
-  }
-
-  getErrors(controlName: keyof typeof this.loginForm.controls): string[] {
-    return this.validationService.getServerErrors(this.loginForm, controlName);
   }
 
   handleForgot(event: Event) {
     event.preventDefault();
     this.facade.showOtp();
+  }
+
+  getErrors(controlName: keyof typeof AuthFields): string[] {
+    return this.validationService.getServerErrors(this.loginForm, controlName);
   }
 
   //#endregion

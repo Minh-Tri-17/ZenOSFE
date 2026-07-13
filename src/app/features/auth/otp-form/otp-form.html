@@ -3,6 +3,7 @@
   <form
     class="needs-validation"
     novalidate
+    [formGroup]="mailForm"
     [class.was-validated]="wasValidated()"
     (submit)="$event.preventDefault()">
     <div class="form-group">
@@ -11,11 +12,16 @@
       >
       <input
         type="email"
-        id="email"
         class="ghost-input form-control"
+        id="email"
+        formControlName="to"
         placeholder="Enter your email address"
-        required
-        autocomplete="email" />
+        [class.is-invalid]="mailForm.controls.to.invalid && wasValidated()" />
+      <div class="invalid-feedback">
+        @for (error of getErrors('to'); track error) {
+          <div>{{ error }}</div>
+        }
+      </div>
     </div>
     <button type="button" class="button btn btn-step-submit w-100" (click)="handleSendCode()">
       <span class="fold"></span>
